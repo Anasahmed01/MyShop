@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="31" height="29" viewBox="0 0 31 29">
+  <g id="Group_764" data-name="Group 764" transform="translate(-33 -256)">
+    <g id="Group_762" data-name="Group 762" transform="translate(-1 -4)">
+      <g id="Ellipse_40" data-name="Ellipse 40" transform="translate(34 262)" fill="#fff" stroke="#1ef13a" stroke-width="1">
+        <circle cx="13.5" cy="13.5" r="13.5" stroke="none"/>
+        <circle cx="13.5" cy="13.5" r="13" fill="none"/>
+      </g>
+      <path id="Icon_awesome-home" data-name="Icon awesome-home" d="M8.45,5.756,2.893,10.333v4.94a.482.482,0,0,0,.482.482l3.377-.009a.482.482,0,0,0,.48-.482V12.379a.482.482,0,0,1,.482-.482H9.643a.482.482,0,0,1,.482.482v2.883a.482.482,0,0,0,.482.484l3.376.009a.482.482,0,0,0,.482-.482V10.329L8.911,5.756A.367.367,0,0,0,8.45,5.756Zm8.778,3.111L14.707,6.79V2.615a.362.362,0,0,0-.362-.362H12.658a.362.362,0,0,0-.362.362V4.8L9.6,2.584a1.447,1.447,0,0,0-1.839,0L.13,8.867a.362.362,0,0,0-.048.509l.769.934a.362.362,0,0,0,.51.049L8.45,4.52a.367.367,0,0,1,.461,0L16,10.36a.362.362,0,0,0,.509-.048l.769-.934a.362.362,0,0,0-.051-.51Z" transform="translate(39.037 266.713)" fill="#f8ad39"/>
+    </g>
+    <g id="Group_763" data-name="Group 763" transform="translate(19 -5.945)">
+      <g id="Ellipse_40-2" data-name="Ellipse 40" transform="translate(34 261.945)" fill="#fff" stroke="#1ef13a" stroke-width="1">
+        <circle cx="5.5" cy="5.5" r="5.5" stroke="none"/>
+        <circle cx="5.5" cy="5.5" r="5" fill="none"/>
+      </g>
+      <path id="Icon_awesome-check" data-name="Icon awesome-check" d="M2.178,9.265.094,7.181a.321.321,0,0,1,0-.453l.453-.453a.321.321,0,0,1,.453,0l1.4,1.4L5.412,4.671a.321.321,0,0,1,.453,0l.453.453a.321.321,0,0,1,0,.453L2.632,9.265A.321.321,0,0,1,2.178,9.265Z" transform="translate(36.293 260.476)" fill="#1ef13a"/>
+    </g>
+  </g>
+</svg>
