@@ -9,8 +9,8 @@ import 'package:shop/src/services/storage/storage.dart';
 import 'package:shop/src/utils/app_constraints/app_strings.dart';
 
 class ApiClient {
-  static postRes({
-    required endPoint,
+  static Future postRes({
+    required String endPoint,
     required body,
     Map<String, String>? header,
   }) async {
@@ -23,7 +23,7 @@ class ApiClient {
         body: body,
         headers: header ?? {"Authorization": "Bearer ${userToken}"},
       );
-      final response = jsonDecode(res.body);
+      final response = json.decode(res.body);
       if (res.statusCode == 200) {
         return response;
       } else if (res.statusCode == 404) {

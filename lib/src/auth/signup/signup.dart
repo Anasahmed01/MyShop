@@ -165,7 +165,7 @@ class SignUp extends StatelessWidget {
                       Material(
                         child: customAnimatedButton(
                           text: 'Sign Up',
-                          onPressed: () async {
+                          onPressed: () {
                             viewModel.animateButton();
                           },
                           height: 46.0,

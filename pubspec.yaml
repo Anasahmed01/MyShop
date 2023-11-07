@@ -43,7 +43,7 @@ dependencies:
   auto_size_text: ^3.0.0
   http: ^1.1.0
   shared_preferences: ^2.2.2
-  pattern_lock: ^2.0.0
+  card_swiper: ^3.0.1
 
 dev_dependencies:
   flutter_test:

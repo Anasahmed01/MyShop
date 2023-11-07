@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:shop/src/app/app.locator.dart';
 import 'package:shop/src/app/app.router.dart';
+import 'package:shop/src/home/home.dart';
 import 'package:shop/src/network/api_client.dart';
 import 'package:shop/src/services/snackbar_service/snackbar_service.dart';
 import 'package:shop/src/services/storage/storage.dart';
@@ -15,9 +16,9 @@ import 'package:stacked_services/stacked_services.dart';
 
 class LogInViewModel extends BaseViewModel {
   TextEditingController emailController =
-      TextEditingController(text: 'harry@gmail.com');
+      TextEditingController(text: 'anasahmed12@gmail.com');
   TextEditingController passwordController =
-      TextEditingController(text: '11111111');
+      TextEditingController(text: '12345678');
   final RoundedLoadingButtonController btnController =
       RoundedLoadingButtonController();
   final formKey = GlobalKey<FormState>();
@@ -30,8 +31,13 @@ class LogInViewModel extends BaseViewModel {
     locator<NavigationService>().navigateTo(Routes.signUp);
   }
 
-  navigateToPattrenView() {
-    locator<NavigationService>().navigateTo(Routes.patternView);
+  navigateToHome() {
+    locator<NavigationService>().replaceWithTransition(
+      const Home(),
+      opaque: true,
+      duration: const Duration(milliseconds: 300),
+      transitionStyle: Transition.rightToLeftWithFade,
+    );
   }
 
   void animateButton() async {
@@ -44,15 +50,19 @@ class LogInViewModel extends BaseViewModel {
   }
 
   final user = locator<UserService>();
-  login({required String email, required String password}) async {
+  login({
+    required String email,
+    required String password,
+  }) async {
     try {
       final data = await ApiClient.postRes(
           endPoint: AppStrings.login,
           body: {"email": email, "password": password});
 
       if (data['success'] == true) {
+        //object have another object in it which have user's data
         final userData = jsonDecode(jsonEncode(data["data"]).toString());
-
+        // saving user id and token in local storage
         LocalStorageServices.saveUser(
           userId: data["user_id"].toString(),
           token: data["token"].toString(),
@@ -66,7 +76,7 @@ class LogInViewModel extends BaseViewModel {
 
         NavSnackbarService.showSnackbar('', 'Login successful');
 
-        navigateToPattrenView();
+        navigateToHome();
       } else {
         NavSnackbarService.showSnackbar('Error', 'Invalid credentials');
       }
