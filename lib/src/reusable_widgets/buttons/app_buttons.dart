@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import '../../utils/style/color/app_colors.dart';
+import '../../utils/style/images/images.dart';
+import '../../utils/style/svg/svg.dart';
 import '../text/text.dart';
 
 Widget customButton({
@@ -96,6 +99,58 @@ Widget customButtonChild({
         color: buttonColor ?? Colors.grey[200],
       ),
       child: child,
+    ),
+  );
+}
+
+Widget weGo({
+  required BuildContext context,
+  required int isSelected,
+  double? height,
+  double? width,
+}) {
+  return Padding(
+    padding: const EdgeInsets.all(5),
+    child: Container(
+      height: height ?? 40,
+      width: width ?? 70,
+      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+          width: 1,
+          color: isSelected == 0
+              ? AppColors.seconderyColor
+              : AppColors.primaryColor,
+        ),
+      ),
+      child: SvgPicture.asset(AppSVG.weGo, fit: BoxFit.contain),
+    ),
+  );
+}
+
+Widget yuGo({
+  required BuildContext context,
+  required int isSelected,
+  double? height,
+  double? width,
+}) {
+  return Padding(
+    padding: const EdgeInsets.all(5),
+    child: Container(
+      height: height ?? 40,
+      width: width ?? 70,
+      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+          width: 1,
+          color: isSelected == 1
+              ? AppColors.seconderyColor
+              : AppColors.primaryColor,
+        ),
+      ),
+      child: Image.asset(AppImage.yuGo, fit: BoxFit.contain),
     ),
   );
 }

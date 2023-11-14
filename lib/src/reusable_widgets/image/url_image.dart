@@ -11,6 +11,7 @@ class UrlImage {
     double? width,
     BoxFit? fit,
     double? elevation,
+    FilterQuality? filterQuality,
   }) {
     return Card(
       elevation: elevation ?? 10,
@@ -21,7 +22,7 @@ class UrlImage {
           height: height ?? 120,
           width: width ?? MediaQuery.sizeOf(context).width,
           child: Image.network(
-            filterQuality: FilterQuality.high,
+            filterQuality: filterQuality ?? FilterQuality.high,
             imageUrl,
             scale: 1.0,
             fit: fit ?? BoxFit.fill,
