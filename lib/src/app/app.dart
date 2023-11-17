@@ -1,3 +1,4 @@
+import 'package:shop/src/services/brand/brand.dart';
 import 'package:shop/src/services/user_services/user_service.dart';
 import 'package:shop/src/views/web_view/web_view.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -50,5 +51,8 @@ import '../views/navigation/navigaiton.dart';
 
   //Auth
   Singleton(classType: UserService),
+
+  //brand
+  Singleton(classType: BrandService),
 ])
 class App {}

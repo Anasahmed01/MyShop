@@ -1,6 +1,8 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stacked/stacked.dart';
+
 import '../../reusable_widgets/brands_widget/brands.dart';
 import '../../reusable_widgets/text/text.dart';
 import '../../utils/style/color/app_colors.dart';
@@ -8,7 +10,11 @@ import '../../utils/style/images/images.dart';
 import 'brands_viewmodel.dart';
 
 class BrandsView extends StatelessWidget {
-  const BrandsView({super.key});
+  final int navIndex;
+  const BrandsView({
+    Key? key,
+    required this.navIndex,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +45,7 @@ class BrandsView extends StatelessWidget {
                     size: 25,
                   ),
                 ),
-                const AllBrandsView(),
+                AllBrandsView(navIndex: navIndex),
               ],
             ),
           ),

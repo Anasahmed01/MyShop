@@ -21,8 +21,7 @@ class HomeSlider extends StatelessWidget {
               : Column(
                   children: [
                     SizedBox(
-                      height: 170,
-                      // MediaQuery.sizeOf(context).height * 0.2,
+                      height: MediaQuery.sizeOf(context).height * 0.23,
                       width: double.infinity,
                       child: Swiper(
                         itemWidth: MediaQuery.sizeOf(context).width * 0.75,

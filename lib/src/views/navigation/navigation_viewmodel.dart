@@ -41,7 +41,9 @@ class NavViewModel extends BaseViewModel {
         return const Home();
       case 1:
         // slectedIndex = 1;
-        return const BrandsView();
+        return const BrandsView(
+          navIndex: 1,
+        );
       case 2:
         // slectedIndex = 2;
         return const CartView();

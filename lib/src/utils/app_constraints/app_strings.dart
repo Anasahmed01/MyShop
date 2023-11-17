@@ -24,6 +24,9 @@ class AppStrings {
   static String brands = '/get_all_sites';
   static String brandsUrl = 'https://websitedemolynks.co/shop-go/site/image/';
 
+//get brands by category
+  static String getBrandsByCategory = '/get-brand-by-categories';
+
 //Brand Check
   static String brandCheck = '/product-detail';
 
