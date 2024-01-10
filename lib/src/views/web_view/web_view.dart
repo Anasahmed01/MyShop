@@ -1,16 +1,21 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first, must_be_immutable
 // ignore_for_file: invalid_use_of_protected_member
 
-import 'package:flutter/material.dart';
-import 'package:shop/src/views/web_view/web_viewmodel.dart';
-import 'package:stacked/stacked.dart';
 import 'dart:developer' as devlog;
-
+import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-
+import 'package:shop/src/views/web_view/web_viewmodel.dart';
 import '../../utils/style/color/app_colors.dart';
 
 class WebViewr extends StatelessWidget {
-  const WebViewr({super.key});
+  String url = '';
+  int index = 0;
+  WebViewr({
+    Key? key,
+    required this.url,
+    required this.index,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +35,7 @@ class WebViewr extends StatelessWidget {
                 devlog.log(error.toString());
               },
               onNavigationRequest: (NavigationRequest request) {
-                if (request.url.startsWith('https://www.youtube.com/')) {
+                if (request.url.startsWith(url.toString())) {
                   return NavigationDecision.prevent;
                 }
                 return NavigationDecision.navigate;
@@ -38,7 +43,7 @@ class WebViewr extends StatelessWidget {
             ),
           )
           ..loadRequest(
-            Uri.parse('https://github.com'),
+            Uri.parse(url.toString()),
           );
         return Scaffold(
           appBar: AppBar(

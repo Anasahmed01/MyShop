@@ -8,5 +8,5 @@ class WebViewModel extends BaseViewModel {
   GlobalKey loaderkey = GlobalKey();
   bool show = false;
   bool isLoading = false;
-  // final brandService = locator<BrandsService>();
+  final brandService = locator<BrandsService>();
 }

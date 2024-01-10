@@ -57,11 +57,13 @@ Widget activeBrands({
                 delay: const Duration(milliseconds: 200),
                 child: brands(
                   onTap: () {
-                    viewModel.navigateToWebView(index: index);
+                    viewModel.navigateToWebView(
+                        index: index, navIndex: navIndex);
                   },
                   height: 72,
                   width: 79,
-                  image: Image.network(AppStrings.brandsUrl + brandsList[index].siteImage),
+                  image: Image.network(
+                      AppStrings.brandsUrl + brandsList[index].siteImage),
                 ),
               ),
             );

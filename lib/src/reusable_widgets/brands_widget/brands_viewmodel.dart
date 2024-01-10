@@ -15,9 +15,14 @@ class AllBrandsViewModel extends BaseViewModel {
 
   int selectedCategory = 0;
 
-  navigateToWebView({required int index}) {
+  navigateToWebView({
+    required int index,
+    required int navIndex,
+  }) {
     locator<NavigationService>().navigateTo(
       Routes.webViewr,
+      arguments: WebViewrArguments(
+          url: brandService.brands[index].siteUrl, index: navIndex),
     );
   }
 

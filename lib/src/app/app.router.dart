@@ -185,8 +185,10 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i8.WebViewr: (data) {
+      final args = data.getArgs<WebViewrArguments>(nullOk: false);
       return _i17.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i8.WebViewr(),
+        builder: (context) =>
+            _i8.WebViewr(key: args.key, url: args.url, index: args.index),
         settings: data,
       );
     },
@@ -273,6 +275,36 @@ class NavigationViewArguments {
   @override
   int get hashCode {
     return key.hashCode ^ index.hashCode;
+  }
+}
+
+class WebViewrArguments {
+  const WebViewrArguments({
+    this.key,
+    required this.url,
+    required this.index,
+  });
+
+  final _i17.Key? key;
+
+  final String url;
+
+  final int index;
+
+  @override
+  String toString() {
+    return '{"key": "$key", "url": "$url", "index": "$index"}';
+  }
+
+  @override
+  bool operator ==(covariant WebViewrArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key && other.url == url && other.index == index;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode ^ url.hashCode ^ index.hashCode;
   }
 }
 
@@ -396,14 +428,18 @@ extension NavigatorStateExtension on _i18.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToWebViewr([
+  Future<dynamic> navigateToWebViewr({
+    _i17.Key? key,
+    required String url,
+    required int index,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return navigateTo<dynamic>(Routes.webViewr,
+        arguments: WebViewrArguments(key: key, url: url, index: index),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -614,14 +650,18 @@ extension NavigatorStateExtension on _i18.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithWebViewr([
+  Future<dynamic> replaceWithWebViewr({
+    _i17.Key? key,
+    required String url,
+    required int index,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return replaceWith<dynamic>(Routes.webViewr,
+        arguments: WebViewrArguments(key: key, url: url, index: index),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

@@ -15,9 +15,7 @@ Widget brands({
         child: ClipRRect(
           borderRadius: BorderRadius.circular(5),
           child: Container(
-            decoration: const BoxDecoration(
-                color: Color.fromARGB(255, 236, 234, 234),
-                boxShadow: [BoxShadow(offset: Offset(5, 5))]),
+            color: const Color.fromARGB(255, 236, 234, 234),
             height: height,
             width: width,
             child: IconButton(
