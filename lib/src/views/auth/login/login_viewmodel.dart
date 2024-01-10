@@ -62,6 +62,8 @@ class LogInViewModel extends BaseViewModel {
       if (data['success'] == true) {
         //object have another object in it which have user's data
         final userData = jsonDecode(jsonEncode(data["data"]).toString());
+        print('YouRError>>>>>>>>>>>>>>UserData>>>>>>>>>>>>>>>>>>>$userData');
+
         // saving user id and token in local storage
         LocalStorageServices.saveUser(
           userId: data["user_id"].toString(),
@@ -84,6 +86,8 @@ class LogInViewModel extends BaseViewModel {
       NavSnackbarService.showSnackbar(
           'Alert!', 'Please check your internet connection.');
     } catch (e) {
+      print('YouRError>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>$e');
+
       NavSnackbarService.showSnackbar('Alert!', 'Something went Wrong!');
     }
     btnController.reset();

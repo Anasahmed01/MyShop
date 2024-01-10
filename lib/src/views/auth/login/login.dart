@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shop/src/views/auth/login/login_viewmodel.dart';
 import 'package:stacked/stacked.dart';
-
 import '../../../reusable_widgets/buttons/app_buttons.dart';
 import '../../../reusable_widgets/text/text.dart';
 import '../../../reusable_widgets/text_field/text_field.dart';

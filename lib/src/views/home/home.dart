@@ -66,17 +66,6 @@ class Home extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 20.0),
                       child: const HomeSlider(),
                     ),
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10.0),
-                        child: CustomText.customSizedText(
-                          text: 'Categoty',
-                          color: AppColors.blackColor,
-                          fontWeight: FontWeight.w600,
-                          size: 25,
-                        ),
-                      ),
-                    ),
                     AllBrandsView(navIndex: 0),
                   ],
                 ),

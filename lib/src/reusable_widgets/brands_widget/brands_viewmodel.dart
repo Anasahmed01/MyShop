@@ -2,7 +2,6 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:shop/src/models/brands.dart';
 import 'package:shop/src/services/brand/brand.dart';
-import 'package:shop/src/utils/style/images/images.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import '../../app/app.locator.dart';
@@ -22,7 +21,7 @@ class AllBrandsViewModel extends BaseViewModel {
     );
   }
 
-  final brandService = locator<BrandService>();
+  final brandService = locator<BrandsService>();
   List<AllBrandsModel> category = [];
 
   List<Response> selection = [];
@@ -33,6 +32,8 @@ class AllBrandsViewModel extends BaseViewModel {
         if (items.siteExistCategories
             .contains(brandService.category!.categoryNames[selectedCategory])) {
           selection.add(Response.fromJson(items.toJson()));
+          print('Your Error>>>>>>>>>>>>>>>>$selection');
+          print('Your Error>>>>>>>>>>>>>>>>$category');
         }
       }
     }
@@ -42,7 +43,8 @@ class AllBrandsViewModel extends BaseViewModel {
     try {
       isLoading = true;
       notifyListeners();
-      final res = await brandService.getBrandbyCategory();
+      final res = await brandService.getBrandsByCategory();
+      //print('Your Error>>>>>>>Res>>>>>>>>>$res');
       if (res == 'No Internet') {
         noInternet = true;
         otherError = false;
@@ -78,7 +80,7 @@ class AllBrandsViewModel extends BaseViewModel {
       notifyListeners();
       return;
     } catch (e) {
-      debugPrint(e.toString());
+      debugPrint('Debug>>>>>>>>>>>>>>>>>>>>>>>$e');
       otherError = true;
       noInternet = false;
       isLoading = false;
@@ -92,18 +94,18 @@ class AllBrandsViewModel extends BaseViewModel {
   List<String> brandsname = [];
   bool isLoading = false;
 
-  final getBrandImg = [
-    AppImage.brandPuma,
-    AppImage.brandAmazon,
-    AppImage.brandCk,
-    AppImage.brandGucci,
-    AppImage.brandLacoste,
-    AppImage.brandLevis,
-    AppImage.brandPuma,
-    AppImage.brandAmazon,
-    AppImage.brandCk,
-    AppImage.brandGucci,
-    AppImage.brandLacoste,
-    AppImage.brandLevis
-  ];
+  // final getBrandImg = [
+  //   AppImage.brandPuma,
+  //   AppImage.brandAmazon,
+  //   AppImage.brandCk,
+  //   AppImage.brandGucci,
+  //   AppImage.brandLacoste,
+  //   AppImage.brandLevis,
+  //   AppImage.brandPuma,
+  //   AppImage.brandAmazon,
+  //   AppImage.brandCk,
+  //   AppImage.brandGucci,
+  //   AppImage.brandLacoste,
+  //   AppImage.brandLevis
+  // ];
 }

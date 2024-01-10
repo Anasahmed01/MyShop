@@ -1,3 +1,5 @@
 {
-  "cmake.sourceDirectory": "C:/shop/linux"
+  "cmake.sourceDirectory": "C:/shop/linux",
+  "java.compile.nullAnalysis.mode": "automatic",
+  "java.configuration.updateBuildConfiguration": "disabled"
 }

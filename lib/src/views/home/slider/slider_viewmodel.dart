@@ -2,14 +2,12 @@
 
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:shop/src/network/api_client.dart';
 import 'package:shop/src/services/snackbar_service/snackbar_service.dart';
 import 'package:shop/src/utils/app_constraints/app_strings.dart';
 import 'package:stacked/stacked.dart';
-
 import '../../../utils/style/color/app_colors.dart';
 
 class SliderViewModel extends BaseViewModel {
@@ -51,6 +49,7 @@ class SliderViewModel extends BaseViewModel {
       NavSnackbarService.showSnackbar(
           '', 'Please check your Internet connection!');
     } catch (e) {
+      print('YouRError>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>$e');
       isLoading = false;
       sliderVisible = false;
       notifyListeners();

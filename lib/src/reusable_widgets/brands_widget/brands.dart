@@ -4,7 +4,6 @@ import 'package:stacked/stacked.dart';
 import '../errors/error.dart';
 import 'brands_viewmodel.dart';
 import 'widget/active_brands.dart';
-import 'widget/no_brand.dart';
 import 'widget/waiting_brands.dart';
 
 class AllBrandsView extends StatelessWidget {
@@ -19,7 +18,7 @@ class AllBrandsView extends StatelessWidget {
     return ViewModelBuilder.reactive(
       viewModelBuilder: () => AllBrandsViewModel(),
       onViewModelReady: (viewModel) async {
-        //await viewModel.getBrands();
+        await viewModel.getBrands();
       },
       builder: (context, viewModel, child) {
         if (viewModel.noInternet == true) {
@@ -41,11 +40,17 @@ class AllBrandsView extends StatelessWidget {
           return waitingBrand();
         }
 
-        if (viewModel.brandsUrls.isEmpty) {
-          return noBrands(context: context);
-        }
+        // if (viewModel.brandsUrls.isEmpty) {
+        //   return noBrands(context: context);
+        // }
 
-        return activeBrands(viewModel: viewModel, navIndex: navIndex);
+        return activeBrands(
+          viewModel: viewModel,
+          navIndex: navIndex,
+          brandsList: viewModel.selectedCategory == 0
+              ? viewModel.brandService.brands
+              : viewModel.selection,
+        );
       },
     );
   }

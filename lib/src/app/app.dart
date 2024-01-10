@@ -53,6 +53,6 @@ import '../views/navigation/navigaiton.dart';
   Singleton(classType: UserService),
 
   //brand
-  Singleton(classType: BrandService),
+  Singleton(classType: BrandsService),
 ])
 class App {}

@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:shop/src/reusable_widgets/brands_widget/widget/category.dart';
+import 'package:shop/src/utils/app_constraints/app_strings.dart';
+import '../../../models/brands.dart';
 import '../../../utils/style/color/app_colors.dart';
 import '../../text/text.dart';
 import 'brands_card.dart';
@@ -9,6 +11,7 @@ import '../brands_viewmodel.dart';
 
 Widget activeBrands({
   required AllBrandsViewModel viewModel,
+  required List<Response> brandsList,
   required int navIndex,
 }) {
   return Column(
@@ -25,7 +28,7 @@ Widget activeBrands({
           ),
         ),
       ),
-      category(viewModel: viewModel),
+      categorys(viewModel: viewModel),
       Align(
         alignment: navIndex == 0 ? Alignment.center : Alignment.centerLeft,
         child: Padding(
@@ -42,7 +45,7 @@ Widget activeBrands({
         child: GridView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          itemCount: 10,
+          itemCount: brandsList.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 4,
           ),
@@ -58,7 +61,7 @@ Widget activeBrands({
                   },
                   height: 72,
                   width: 79,
-                  image: Image.asset(viewModel.getBrandImg[index]),
+                  image: Image.network(AppStrings.brandsUrl + brandsList[index].siteImage),
                 ),
               ),
             );

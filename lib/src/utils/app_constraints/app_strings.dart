@@ -1,7 +1,7 @@
 class AppStrings {
   static String appName = 'Shop Go';
 //Site Url
-  static String siteUrl = 'https://websitedemolynks.co/shop-go/api';
+  static String siteUrl = 'https://websitedemolink.co/shop-go/api';
 
 //Auth Urls
   static String login = '/login';
@@ -22,7 +22,8 @@ class AppStrings {
 
 //Brands
   static String brands = '/get_all_sites';
-  static String brandsUrl = 'https://websitedemolynks.co/shop-go/site/image/';
+  static String brandsByCategory = '/get-brand-by-categories';
+  static String brandsUrl = 'https://websitedemolink.co/shop-go/site/image/';
 
 //get brands by category
   static String getBrandsByCategory = '/get-brand-by-categories';
@@ -58,8 +59,4 @@ class AppStrings {
 
 //Product Details
   static String productDetail = '/product-detail';
-
-//Check later
-  static String categoryUrl =
-      'https://shopgo.websitedemolynks.co/public/images/';
 }

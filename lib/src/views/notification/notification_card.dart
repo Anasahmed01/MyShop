@@ -10,6 +10,7 @@ Widget notificationCard({
   required int index,
 }) {
   return Card(
+    margin: const EdgeInsets.only(top: 5),
     elevation: 0,
     child: Stack(
       children: [
