@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import '../../../../../../reusable_widgets/card_widget/size_color.dart';
+import '../../../../../../reusable_widgets/image/url_image.dart';
 import '../../../../../../reusable_widgets/text/text.dart';
 import '../../../../../../utils/style/color/app_colors.dart';
-import '../../../../../../utils/style/images/images.dart';
 import '../cart_tab_viewmodel.dart';
 
 Widget cartCard({
@@ -11,7 +11,7 @@ Widget cartCard({
 }) {
   return AnimationLimiter(
     child: ListView.builder(
-      itemCount: 4,
+      itemCount: viewModel.productData.length,
       itemBuilder: (context, index) {
         return AnimationConfiguration.staggeredList(
           position: index,
@@ -34,31 +34,26 @@ Widget cartCard({
                               Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 10),
-                                child: Image.asset(
-                                  AppImage.brandPuma,
+                                child: UrlImage.image(
+                                  filterQuality: FilterQuality.low,
+                                  elevation: 0,
                                   height: 40,
+                                  fit: BoxFit.contain,
+                                  imageUrl: viewModel.productData[index]
+                                      .response[index].attributes.logo
+                                      .toString(),
+                                  context: context,
                                 ),
-                                //  UrlImage.image(
-                                //   filterQuality: FilterQuality.low,
-                                //   elevation: 0,
-                                //   height: 40,
-                                //   fit: BoxFit.contain,
-                                //   imageUrl: cart[index].attributes.logo,
-                                //   context: context,
-                                // ),
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 10),
-                                child: Image.asset(
-                                  AppImage.hoodie,
-                                ),
-                                //  UrlImage.image(
-                                //   filterQuality: FilterQuality.low,
-                                //   imageUrl: cart[index].attributes.productImage,
-                                //   context: context,
-                                // ),
-                              ),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: UrlImage.image(
+                                    filterQuality: FilterQuality.low,
+                                    imageUrl:
+                                        ' cart[index].attributes.productImage',
+                                    context: context,
+                                  )),
                             ],
                           ),
                         ),
@@ -72,7 +67,7 @@ Widget cartCard({
                                 padding: const EdgeInsets.only(
                                     top: 20, bottom: 5.0, right: 30),
                                 child: CustomText.customSizedText(
-                                  text: 'Women Hoodie',
+                                  text: 'cart[index].name',
                                   maxLine: 2,
                                   size: 14,
                                   maxFontSize: 14,
@@ -81,25 +76,24 @@ Widget cartCard({
                                   textAlign: TextAlign.left,
                                 ),
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Flexible(
-                                    child: sizeColorWidget(
+                              SizedBox(
+                                height: 60,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    sizeColorWidget(
                                       heading: 'Size',
                                       content: 'M',
                                       context: context,
                                     ),
-                                  ),
-                                  Flexible(
-                                    child: sizeColorWidget(
+                                    sizeColorWidget(
                                       heading: 'Color',
                                       content: 'black',
                                       context: context,
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                               Row(
                                 children: [
@@ -113,9 +107,11 @@ Widget cartCard({
                                     ),
                                   ),
                                   // productQuantity(
-                                  //     viewModel: viewModel,
-                                  //     quantity: quantity,
-                                  //     productId: productId)
+                                  //   viewModel: viewModel,
+                                  //   quantity: quantity,
+                                  //   productId: productId,
+                                  //   yuGoweGo: yuGoWeGo,
+                                  // )
                                   // CounterPickerWidget(
                                   //     productId:
                                   //         model.response[index].id.toString()),
@@ -145,8 +141,10 @@ Widget cartCard({
                                         ),
                                         child: Center(
                                           child: CustomText.customSizedText(
-                                            text: '120 TL',
-                                            size: 18,
+                                            text: 'coman',
+                                            size: 14,
+                                            minFontSize: 12,
+                                            maxFontSize: 14,
                                             color: AppColors.whiteColor,
                                           ),
                                         ),

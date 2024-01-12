@@ -45,7 +45,7 @@ class NotificationWidgets {
 
   static Widget notifitationList({required NotificationViewModel viewModel}) {
     return ListView.builder(
-      itemCount: 5,
+      itemCount: viewModel.notificationList.length,
       shrinkWrap: true,
       // physics: const NeverScrollableScrollPhysics(),
       itemExtent: 130,
@@ -55,6 +55,7 @@ class NotificationWidgets {
           duration: const Duration(milliseconds: 200),
           child: SlideAnimation(
             child: notificationCard(
+              viewModel: viewModel,
               context: context,
               index: index,
             ),

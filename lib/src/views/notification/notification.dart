@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop/src/views/notification/widget/waiting.dart';
 import 'package:stacked/stacked.dart';
 import '../../utils/style/color/app_colors.dart';
 import 'notification_viewmodel.dart';
@@ -12,7 +13,10 @@ class NotificationView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder.reactive(
       viewModelBuilder: () => NotificationViewModel(),
-      onViewModelReady: (viewModel) async {},
+      onViewModelReady: (viewModel) async {
+        await viewModel.getNotifications();
+        viewModel.notifyListeners();
+      },
       builder: (context, viewModel, child) {
         return Container(
           height: double.infinity,
@@ -24,10 +28,26 @@ class NotificationView extends StatelessWidget {
               NotificationWidgets.heading(),
               NotificationWidgets.headerRow(),
               Divider(color: AppColors.greyColor),
-              Flexible(
-                  child: NotificationWidgets.notifitationList(
-                      viewModel: viewModel)),
-              NotificationError.emptyNotificaiton(context: context),
+              if (viewModel.isLoading == true)
+                Flexible(
+                  child: NotificationWaiting.waitingList(context: context),
+                ),
+              if (viewModel.noInternet == true)
+                NotificationError.noInternet(context: context),
+              if (viewModel.otherError == true)
+                NotificationError.otherError(context: context),
+              if (viewModel.notificationList.isNotEmpty &&
+                  viewModel.isLoading == false &&
+                  viewModel.noInternet == false &&
+                  viewModel.otherError == false)
+                Flexible(
+                    child: NotificationWidgets.notifitationList(
+                        viewModel: viewModel)),
+              if (viewModel.notificationList.isEmpty &&
+                  viewModel.isLoading == false &&
+                  viewModel.noInternet == false &&
+                  viewModel.otherError == false)
+                NotificationError.emptyNotificaiton(context: context),
             ],
           ),
         );

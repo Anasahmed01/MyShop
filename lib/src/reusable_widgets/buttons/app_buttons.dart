@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import '../../utils/style/color/app_colors.dart';
 import '../../utils/style/images/images.dart';
-import '../../utils/style/svg/svg.dart';
 import '../text/text.dart';
 
 Widget customButton({
@@ -124,7 +122,7 @@ Widget weGo({
               : AppColors.primaryColor,
         ),
       ),
-      child: SvgPicture.asset(AppSVG.weGo, fit: BoxFit.contain),
+      child: Image.asset(AppImage.weGo, fit: BoxFit.contain),
     ),
   );
 }

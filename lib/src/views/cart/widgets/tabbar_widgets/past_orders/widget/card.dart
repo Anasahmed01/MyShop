@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:shop/src/utils/style/images/images.dart';
 import 'package:shop/src/views/cart/widgets/tabbar_widgets/cart_tab/cart_tab_viewmodel.dart';
-import '../../../../../../reusable_widgets/buttons/app_buttons.dart';
 import '../../../../../../reusable_widgets/card_widget/size_color.dart';
 import '../../../../../../reusable_widgets/image/url_image.dart';
 import '../../../../../../reusable_widgets/text/text.dart';
@@ -51,17 +50,6 @@ Widget pastOrderCard({required CartTabViewModel cartTabViewModel}) {
                               fit: BoxFit.fill,
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: InkWell(
-                              onTap: () {},
-                              child: customButton(
-                                  text: 'Add to cart',
-                                  buttonHeight: 30,
-                                  buttonwidth: MediaQuery.sizeOf(context).width,
-                                  buttonColor: AppColors.seconderyColor2),
-                            ),
-                          )
                         ],
                       ),
                     ),
@@ -92,14 +80,14 @@ Widget pastOrderCard({required CartTabViewModel cartTabViewModel}) {
                               Flexible(
                                 child: sizeColorWidget(
                                   heading: 'Size',
-                                  content: cartTabViewModel.productSize[index],
+                                  content: 'M',
                                   context: context,
                                 ),
                               ),
                               Flexible(
                                 child: sizeColorWidget(
                                   heading: 'Color',
-                                  content: cartTabViewModel.productColor[index],
+                                  content: 'kala',
                                   context: context,
                                 ),
                               )

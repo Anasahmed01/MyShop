@@ -11,7 +11,7 @@ class CartTab extends StatelessWidget {
     return ViewModelBuilder.reactive(
       viewModelBuilder: () => CartTabViewModel(),
       onViewModelReady: (viewModel) async {
-        // await viewModel.getCart();
+        await viewModel.getCart();
       },
       builder: (context, viewModel, child) {
         return Stack(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shop/src/utils/style/images/images.dart';
+import 'package:shop/src/utils/date_time/date_time.dart';
+import 'package:shop/src/views/notification/notification_viewmodel.dart';
 
 import '../../reusable_widgets/image/url_image.dart';
 import '../../reusable_widgets/text/text.dart';
@@ -8,6 +9,7 @@ import '../../utils/style/color/app_colors.dart';
 Widget notificationCard({
   required BuildContext context,
   required int index,
+  required NotificationViewModel viewModel,
 }) {
   return Card(
     margin: const EdgeInsets.only(top: 5),
@@ -18,7 +20,8 @@ Widget notificationCard({
           right: 0,
           top: 0,
           child: CustomText.customSizedText(
-            text: '3/2/2020',
+            text: DateTimerAgo.timeAgo(
+                viewModel.notificationList[index].createdAt),
             size: 8,
             maxFontSize: 8,
             minFontSize: 8,
@@ -47,7 +50,7 @@ Widget notificationCard({
                   height: 80,
                   width: 80,
                   fit: BoxFit.fill,
-                  imageUrl: AppImage.womenHoodie2,
+                  imageUrl: viewModel.notificationList[index].image,
                   context: context,
                 ),
                 // ClipRRect(
@@ -68,7 +71,8 @@ Widget notificationCard({
                 Flexible(
                   child: ListTile(
                     title: CustomText.customSizedText(
-                      text: 'Women Hoodie',
+                      text:
+                          viewModel.notificationList[index].subject.toString(),
                       size: 15,
                       maxFontSize: 15,
                       minFontSize: 15,
@@ -76,8 +80,8 @@ Widget notificationCard({
                       color: AppColors.blackColor,
                     ),
                     subtitle: CustomText.customSizedText(
-                      text:
-                          "Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                      text: viewModel.notificationList[index].description
+                          .toString(),
                       size: 12,
                       minFontSize: 12,
                       maxFontSize: 12,

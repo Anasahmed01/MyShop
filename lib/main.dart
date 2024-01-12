@@ -20,6 +20,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
           scaffoldBackgroundColor: AppColors.whiteColor,
+          tabBarTheme:
+              const TabBarTheme(indicatorSize: TabBarIndicatorSize.tab),
           appBarTheme: AppBarTheme(
               iconTheme: IconThemeData(color: AppColors.whiteColor))),
       debugShowCheckedModeBanner: false,

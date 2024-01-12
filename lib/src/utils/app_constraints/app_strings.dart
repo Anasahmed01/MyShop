@@ -41,7 +41,7 @@ class AppStrings {
 //Home Slider
   static String slider = '/getHomeSlider';
   static String sliderImage =
-      'https://websitedemolynks.co/shop-go/home_slider/image/';
+      'https://websitedemolink.co/shop-go/home_slider/image/';
 
 //Notification
   static String notification = '/getLocalNotifications';

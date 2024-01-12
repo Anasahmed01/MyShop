@@ -37,8 +37,7 @@ class AllBrandsViewModel extends BaseViewModel {
         if (items.siteExistCategories
             .contains(brandService.category!.categoryNames[selectedCategory])) {
           selection.add(Response.fromJson(items.toJson()));
-          print('Your Error>>>>>>>>>>>>>>>>$selection');
-          print('Your Error>>>>>>>>>>>>>>>>$category');
+        
         }
       }
     }

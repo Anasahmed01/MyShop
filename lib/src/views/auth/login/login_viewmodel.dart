@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
@@ -16,9 +18,9 @@ import 'package:stacked_services/stacked_services.dart';
 
 class LogInViewModel extends BaseViewModel {
   TextEditingController emailController =
-      TextEditingController(text: 'anasahmed12@gmail.com');
+      TextEditingController(text: 'harry@gmail.com');
   TextEditingController passwordController =
-      TextEditingController(text: '12345678');
+      TextEditingController(text: '11111111');
   final RoundedLoadingButtonController btnController =
       RoundedLoadingButtonController();
   final formKey = GlobalKey<FormState>();
@@ -62,7 +64,6 @@ class LogInViewModel extends BaseViewModel {
       if (data['success'] == true) {
         //object have another object in it which have user's data
         final userData = jsonDecode(jsonEncode(data["data"]).toString());
-        print('YouRError>>>>>>>>>>>>>>UserData>>>>>>>>>>>>>>>>>>>$userData');
 
         // saving user id and token in local storage
         LocalStorageServices.saveUser(
