@@ -1,6 +1,5 @@
 import 'package:shop/src/models/cart.dart';
-import 'package:shop/src/network/api_client.dart';
-import 'package:shop/src/utils/app_constraints/app_strings.dart';
+import 'package:shop/src/services/cart/cart_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import '../../../../../app/app.locator.dart';
@@ -27,7 +26,7 @@ class CartTabViewModel extends BaseViewModel {
   getCart() async {
     isLoading = true;
     notifyListeners();
-    var response = await ApiClient.getRes(endpoint: AppStrings.getCart);
+    var response = await CartService.getCart();
     print('Res>>>>>>>>>>>>>>>>>>>>$response');
     dev.log('Res>>>>>>>>>>>>>>>>>>>>$response');
     for (var item in response) {

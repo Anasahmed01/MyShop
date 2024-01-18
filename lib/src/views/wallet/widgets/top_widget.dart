@@ -10,7 +10,10 @@ import '../wallet_viewmodel.dart';
 Widget topWidget({required BuildContext context}) {
   return ViewModelBuilder.reactive(
     viewModelBuilder: () => WalletViewModel(),
-    onViewModelReady: (viewModel) async {},
+    onViewModelReady: (viewModel) async {
+      await viewModel.getTransactions();
+      await viewModel.getUser();
+    },
     builder: (context, viewModel, child) {
       return SizedBox(
         height: 330,
@@ -37,7 +40,14 @@ Widget topWidget({required BuildContext context}) {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           viewModel.currentUser == null
-                              ? Container(
+                              ? customCircleAvatar(
+                                  radius:
+                                      MediaQuery.sizeOf(context).width * 0.2,
+                                  borderColor: AppColors.greenColor,
+                                  imgUrl: viewModel
+                                      .users.userData!.shopGo[0].userImage,
+                                )
+                              : Container(
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     border: Border.all(
@@ -50,23 +60,9 @@ Widget topWidget({required BuildContext context}) {
                                     radius:
                                         MediaQuery.sizeOf(context).width * 0.1,
                                   ),
-                                )
-                              : customCircleAvatar(
-                                  radius:
-                                      MediaQuery.sizeOf(context).width * 0.2,
-                                  borderColor: AppColors.greenColor,
-                                  imgUrl: viewModel
-                                      .users.userData!.shopGo[0].userImage,
                                 ),
                           viewModel.currentUser == null
                               ? Flexible(
-                                  child: CustomText.customSizedText(
-                                      text: '',
-                                      size: 14,
-                                      maxFontSize: 14,
-                                      color: AppColors.whiteColor),
-                                )
-                              : Flexible(
                                   child: Padding(
                                     padding: const EdgeInsets.only(top: 5),
                                     child: CustomText.customSizedText(
@@ -76,13 +72,20 @@ Widget topWidget({required BuildContext context}) {
                                         maxFontSize: 14,
                                         color: AppColors.whiteColor),
                                   ),
+                                )
+                              : Flexible(
+                                  child: CustomText.customSizedText(
+                                      text: '',
+                                      size: 14,
+                                      maxFontSize: 14,
+                                      color: AppColors.whiteColor),
                                 ),
                           CustomText.customSizedText(
                               text: 'Total Amount',
                               size: 40,
                               color: AppColors.whiteColor),
                           CustomText.customSizedText(
-                            text: '120',
+                            text: viewModel.totalPrice.toStringAsFixed(2),
                             // viewModel.totalPrice.toStringAsFixed(2),
                             size: 40,
                             color: AppColors.seconderyColor2,

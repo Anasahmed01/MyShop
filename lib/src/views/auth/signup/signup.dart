@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:intl_phone_field/phone_number.dart';
 import 'package:shop/src/views/auth/signup/signup_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
@@ -76,18 +79,53 @@ class SignUp extends StatelessWidget {
                         errorText: viewModel.emailError,
                         visible: viewModel.emailError != '',
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: CustomTextFields.appTextField(
-                          hintText: '+90123456789',
-                          keBoardType: TextInputType.number,
-                          borderColor: viewModel.phoneError == ''
-                              ? Colors.transparent
-                              : Colors.red,
-                          controller: viewModel.phoneController,
-                          prefixIcon: Icons.phone,
+                         Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      child: IntlPhoneField(
+                        keyboardType: TextInputType.phone,
+                        invalidNumberMessage: '',
+                        flagsButtonPadding: const EdgeInsets.only(bottom: 5),
+                        textInputAction: TextInputAction.next,
+                        dropdownIcon: Icon(
+                          Icons.arrow_drop_down_sharp,
+                          color: AppColors.greyColor,
                         ),
+                        cursorColor: AppColors.blackColor,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: AppColors.lightGreyColor,
+                            ),
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          counterText: '',
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: AppColors.greyColor,
+                            ),
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          hintText: 'Phone number',
+                          hintStyle: TextStyle(color: AppColors.greyColor),
+                          filled: true,
+                          fillColor: AppColors.textFieldColor,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: AppColors.greyColor,
+                            ),
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                        ),
+                        onChanged: (PhoneNumber? phoneNumber) {
+                          viewModel.phoneController =
+                              phoneNumber!.completeNumber;
+                        },
+                        initialCountryCode: 'TR',
                       ),
+                    ),
                       CustomText.errorText(
                         errorText: viewModel.phoneError,
                         visible: viewModel.phoneError != '',

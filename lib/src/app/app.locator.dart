@@ -12,6 +12,8 @@ import 'package:stacked_services/src/snackbar/snackbar_service.dart';
 import 'package:stacked_shared/stacked_shared.dart';
 
 import '../services/brand/brand.dart';
+import '../services/cart/cart_service.dart';
+import '../services/order_history/order_history.dart';
 import '../services/user_services/user_service.dart';
 
 final locator = StackedLocator.instance;
@@ -26,8 +28,10 @@ Future<void> setupLocator({
 
 // Register dependencies
   locator.registerSingleton(NavigationService());
+  locator.registerSingleton(WalletService());
   locator.registerLazySingleton(() => SnackbarService());
   locator.registerLazySingleton(() => DialogService());
   locator.registerSingleton(UserService());
   locator.registerSingleton(BrandsService());
+  locator.registerSingleton(CartService());
 }

@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
@@ -67,14 +65,14 @@ class LogInViewModel extends BaseViewModel {
 
         // saving user id and token in local storage
         LocalStorageServices.saveUser(
-          userId: data["user_id"].toString(),
+          userId: userData["user_id"].toString(),
           token: data["token"].toString(),
-          userEmail: data["user_email"].toString(),
+          userEmail: userData["user_email"].toString(),
         );
 
         await user.getUserDataById(
           id: userData['user_id'].toString(),
-          token: ['token'].toString(),
+          token: data['token'].toString(),
         );
 
         NavSnackbarService.showSnackbar('', 'Login successful');

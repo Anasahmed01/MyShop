@@ -15,13 +15,15 @@ import 'package:shop/src/utils/app_constraints/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../../navigation/navigaiton.dart';
+
 class SignUpViewModel extends BaseViewModel {
   final RoundedLoadingButtonController btnController =
       RoundedLoadingButtonController();
   TextEditingController usernameController = TextEditingController(text: '');
   TextEditingController emailController = TextEditingController(text: '');
-  TextEditingController phoneController = TextEditingController();
-
+  //TextEditingController phoneController = TextEditingController();
+  String phoneController = '';
   TextEditingController passwordController = TextEditingController(text: '');
   TextEditingController confirmPasswordController =
       TextEditingController(text: '');
@@ -37,8 +39,13 @@ class SignUpViewModel extends BaseViewModel {
   String phoneError = '';
   String passwordError = '';
 
-  navigateToPattrenView() {
-    locator<NavigationService>().navigateTo(Routes.home);
+  navigateToHome() {
+    locator<NavigationService>().replaceWithTransition(
+      NavigationView(index: 0),
+      opaque: true,
+      duration: const Duration(milliseconds: 300),
+      transitionStyle: Transition.rightToLeftWithFade,
+    );
   }
 
   navigateToLogInView() {
@@ -52,7 +59,7 @@ class SignUpViewModel extends BaseViewModel {
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
         confirmPassword: confirmPasswordController.text.trim(),
-        phone: phoneController.text.trim(),
+        phone: phoneController.trim(),
       );
     });
   }
@@ -80,11 +87,11 @@ class SignUpViewModel extends BaseViewModel {
         final userData = await jsonDecode(
           jsonEncode(data["ShopGo_APP"][0]).toString(),
         );
-        // saving user id and token in local storage
+
         final user = await jsonDecode(
           jsonEncode(userData["user"]).toString(),
         );
-
+        // saving user id and token in local storage
         LocalStorageServices.saveUser(
           userId: user["id"].toString(),
           token: userData["token"].toString(),
@@ -94,7 +101,7 @@ class SignUpViewModel extends BaseViewModel {
             id: user["id"].toString(), token: userData["token"].toString());
 
         NavSnackbarService.showSnackbar('', 'Account created successful!');
-        navigateToPattrenView();
+        navigateToHome();
       } else {
         if (data["name"] != null) {
           nameError = data["name"][0];

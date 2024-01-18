@@ -81,7 +81,7 @@ drawer({
                           Flexible(
                             child: CustomText.customSizedText(
                                 text: userName,
-                                size: 17,
+                                size: 20,
                                 color: AppColors.whiteColor),
                           ),
                         ],
