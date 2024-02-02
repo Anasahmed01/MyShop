@@ -11,7 +11,7 @@ Widget cartCard({
 }) {
   return AnimationLimiter(
     child: ListView.builder(
-      itemCount: viewModel.productData.length,
+      itemCount: viewModel.attribute.length,
       itemBuilder: (context, index) {
         return AnimationConfiguration.staggeredList(
           position: index,
@@ -39,9 +39,8 @@ Widget cartCard({
                                   elevation: 0,
                                   height: 40,
                                   fit: BoxFit.contain,
-                                  imageUrl: viewModel.productData[index]
-                                      .response[index].attributes.logo
-                                      .toString(),
+                                  imageUrl: viewModel
+                                      .attribute[index].attributes.logo,
                                   context: context,
                                 ),
                               ),
@@ -50,8 +49,8 @@ Widget cartCard({
                                       horizontal: 10),
                                   child: UrlImage.image(
                                     filterQuality: FilterQuality.low,
-                                    imageUrl:
-                                        ' cart[index].attributes.productImage',
+                                    imageUrl: viewModel.attribute[index]
+                                        .attributes.productImage,
                                     context: context,
                                   )),
                             ],
@@ -67,7 +66,7 @@ Widget cartCard({
                                 padding: const EdgeInsets.only(
                                     top: 20, bottom: 5.0, right: 30),
                                 child: CustomText.customSizedText(
-                                  text: 'cart[index].name',
+                                  text: viewModel.attribute[index].name,
                                   maxLine: 2,
                                   size: 14,
                                   maxFontSize: 14,
@@ -84,12 +83,14 @@ Widget cartCard({
                                   children: [
                                     sizeColorWidget(
                                       heading: 'Size',
-                                      content: 'M',
+                                      content: viewModel
+                                          .attribute[index].attributes.size,
                                       context: context,
                                     ),
                                     sizeColorWidget(
                                       heading: 'Color',
-                                      content: 'black',
+                                      content: viewModel
+                                          .attribute[index].attributes.color,
                                       context: context,
                                     ),
                                   ],
@@ -141,7 +142,8 @@ Widget cartCard({
                                         ),
                                         child: Center(
                                           child: CustomText.customSizedText(
-                                            text: 'coman',
+                                            text: viewModel.attribute[index]
+                                                .attributes.totalPrice,
                                             size: 14,
                                             minFontSize: 12,
                                             maxFontSize: 14,

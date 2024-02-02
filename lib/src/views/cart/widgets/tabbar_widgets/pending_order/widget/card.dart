@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:shop/src/views/cart/widgets/tabbar_widgets/past_orders/past_order_viewmodel.dart';
+import 'package:shop/src/views/cart/widgets/tabbar_widgets/pending_order/pending_order_viewmodel.dart';
 import '../../../../../../reusable_widgets/card_widget/size_color.dart';
 import '../../../../../../reusable_widgets/image/url_image.dart';
 import '../../../../../../reusable_widgets/text/text.dart';
 import '../../../../../../utils/style/color/app_colors.dart';
 
-Widget pastOrderCard({required PastOrderViewModel viewModel}) {
+Widget pendingOrderCard({required PendingOrderViewModel viewModel}) {
   return AnimationLimiter(
     child: ListView.builder(
       itemCount: viewModel.attribute.length,
       itemBuilder: (context, index) {
+        
         return AnimationConfiguration.staggeredList(
           position: index,
           delay: const Duration(milliseconds: 200),
@@ -123,11 +124,11 @@ Widget pastOrderCard({required PastOrderViewModel viewModel}) {
                                     ),
                                     child: Center(
                                       child: CustomText.customSizedText(
-                                        text: viewModel.attribute[index]
-                                            .attributes.totalPrice,
+                                        text: viewModel.attribute[index].price +
+                                            viewModel.getCartData!.currency,
                                         size: 18,
-                                        maxFontSize: 18,
-                                        minFontSize: 18,
+                                        maxFontSize: 16,
+                                        minFontSize: 16,
                                         color: AppColors.whiteColor,
                                       ),
                                     ),

@@ -11,7 +11,6 @@ Widget productCard() {
     child: ListView.builder(
       itemCount: 3,
       itemBuilder: (context, index) {
-        // double price = double.parse(model.response[index].price);
         return Stack(
           children: [
             Card(

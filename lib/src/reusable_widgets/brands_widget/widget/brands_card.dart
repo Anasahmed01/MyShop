@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../utils/style/color/app_colors.dart';
 
@@ -41,10 +42,14 @@ Widget brandsSkeleton({
             width: width,
             child: Padding(
               padding: const EdgeInsets.all(20),
-              child: Container(
-                decoration: BoxDecoration(
-                    color: AppColors.greyColor.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(30)),
+              child: Shimmer.fromColors(
+                baseColor: AppColors.blackColor,
+                highlightColor: AppColors.whiteColor,
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: AppColors.greyColor.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(30)),
+                ),
               ),
             )),
       ),

@@ -7,9 +7,21 @@ class CartService {
   static getCart() async {
     try {
       String? id = LocalStorageServices.getUserId();
-      print('Id>>>>>>>>>>>$id');
+
+      var res = await ApiClient.getRes(endpoint: AppStrings.getCart + id!);
+
+      return res;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  static getPendingCart() async {
+    try {
+      String? id = LocalStorageServices.getUserId();
+
       var res =
-          await ApiClient.getRes(endpoint: AppStrings.getCart + id!.toString());
+          await ApiClient.getRes(endpoint: AppStrings.getPendingOrders + id!);
 
       return res;
     } catch (e) {

@@ -57,6 +57,11 @@ class AppStrings {
   static String getCart = '/get-cart/';
   static String updateCartQuantity = '/cart-quantity/';
 
+//Pending Order
+
+  static String getPendingOrders = '/get-pending-products/';
+  static String removePendingOrder = '/remove-pending-products/';
+
 //Product Details
   static String productDetail = '/product-detail';
 }

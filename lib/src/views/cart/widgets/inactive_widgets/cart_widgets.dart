@@ -18,16 +18,16 @@ class CartWidgets {
       minFontSize: 14,
       maxFontSize: 20,
     ),
-    // CustomText.customSizedText(
-    //   text: 'Pending orders',
-    //   size: 14,
-    //   fontWeight: FontWeight.w700,
-    //   color: AppColors.whiteColor,
-    //   textAlign: TextAlign.center,
-    //   maxLine: 2,
-    //   minFontSize: 14,
-    //   maxFontSize: 20,
-    // ),
+    CustomText.customSizedText(
+      text: 'Pending',
+      size: 14,
+      fontWeight: FontWeight.w700,
+      color: AppColors.whiteColor,
+      textAlign: TextAlign.center,
+      maxLine: 2,
+      minFontSize: 14,
+      maxFontSize: 20,
+    ),
     CustomText.customSizedText(
       text: 'Past orders',
       size: 14,
@@ -99,12 +99,11 @@ class SizedWidgetForShop extends StatelessWidget {
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             border: Border.all(
-                                color: 
-                                //viewModel.currentSize == index
+                                color:
+                                    //viewModel.currentSize == index
                                     // ? AppColors.blackColor
-                                    // : 
-                                    AppColors.whiteColor
-                                    ),
+                                    // :
+                                    AppColors.whiteColor),
                           ),
                           height: 60,
                           width: 30,
@@ -135,8 +134,6 @@ class SizedWidgetForShop extends StatelessWidget {
     );
   }
 }
-
-
 
 class CounterPickerWidget extends StatelessWidget {
   final String productId;
@@ -228,7 +225,6 @@ class ColorPicker extends StatelessWidget {
   }
 }
 
-
 class ColorPickerWidget extends StatelessWidget {
   const ColorPickerWidget({super.key});
 
@@ -271,4 +267,3 @@ class ColorPickerWidget extends StatelessWidget {
     );
   }
 }
-

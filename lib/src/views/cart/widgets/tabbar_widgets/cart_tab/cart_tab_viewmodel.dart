@@ -1,10 +1,10 @@
+import 'dart:convert';
 import 'package:shop/src/models/cart.dart';
 import 'package:shop/src/services/cart/cart_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import '../../../../../app/app.locator.dart';
 import '../../../../../app/app.router.dart';
-import 'dart:developer' as dev;
 
 class CartTabViewModel extends BaseViewModel {
 //Navigation
@@ -20,18 +20,24 @@ class CartTabViewModel extends BaseViewModel {
 
   List<CartModel> productData = [];
   // List<Color> productColor = [];
+  List attribute = [];
 
-  List<CartModel>? getCartData;
+  CartModel? getCartData;
 
   getCart() async {
     isLoading = true;
     notifyListeners();
+
     var response = await CartService.getCart();
-    print('Res>>>>>>>>>>>>>>>>>>>>$response');
-    dev.log('Res>>>>>>>>>>>>>>>>>>>>$response');
-    for (var item in response) {
-      productData.add(CartModel.fromJson(item));
+
+    for (var item in response['response']) {
+      var attributes = json.decode(json.encode(item['attributes']).toString());
+      if (attributes['module'] == '0') {
+        attribute.add(Response.fromJson(item));
+      }
+      getCartData = CartModel.fromJson(response);
     }
+
     notifyListeners();
     isLoading = false;
   }

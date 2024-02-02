@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:shop/src/views/cart/widgets/tabbar_widgets/pending_order/pending_order_viewmodel.dart';
 import 'package:stacked/stacked.dart';
-import '../../cart_viewmodel.dart';
-import 'product_card.dart';
+import '../../waiting/waiting.dart';
+import 'widget/card.dart';
 
 class PendingOrderTab extends StatelessWidget {
   const PendingOrderTab({super.key});
@@ -10,23 +11,20 @@ class PendingOrderTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder.reactive(
-      viewModelBuilder: () => CartViewModel(),
+      viewModelBuilder: () => PendingOrderViewModel(),
+      onViewModelReady: (viewModel) async {
+        await viewModel.getPendingOrders();
+      },
       builder: (context, viewModel, child) {
+        if (viewModel.isLoading == true) {
+          return Waiting.waitingCart();
+        }
         return Container(
           color: Colors.white,
           height: double.infinity,
           width: double.infinity,
           child: AnimationLimiter(
-            child: Column(children: [
-              Expanded(
-                child: ListView.builder(
-                  itemCount: 2,
-                  itemBuilder: (context, index) {
-                    return productCard();
-                  },
-                ),
-              ),
-            ]),
+            child: pendingOrderCard(viewModel: viewModel),
           ),
         );
       },

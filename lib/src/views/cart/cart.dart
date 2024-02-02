@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:shop/src/views/cart/widgets/tabbar_widgets/pending_order/pending_orders.dart';
 import 'package:stacked/stacked.dart';
 import '../../reusable_widgets/buttons/app_buttons.dart';
 import '../../reusable_widgets/text/text.dart';
@@ -23,7 +24,7 @@ class CartView extends StatelessWidget {
             Flexible(
               child: DefaultTabController(
                 initialIndex: 0,
-                length: 2,
+                length: 3,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 5),
                   child: Column(
@@ -96,7 +97,7 @@ class CartView extends StatelessWidget {
                         child: TabBarView(
                           children: [
                             CartTab(),
-                            // PendingOrderTab(),
+                            PendingOrderTab(),
                             PastOrderTab(),
                           ],
                         ),

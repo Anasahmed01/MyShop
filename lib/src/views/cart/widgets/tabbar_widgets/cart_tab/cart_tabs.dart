@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import '../../waiting/waiting.dart';
 import 'widgets/cart_card.dart';
 import 'cart_tab_viewmodel.dart';
 
@@ -14,6 +15,9 @@ class CartTab extends StatelessWidget {
         await viewModel.getCart();
       },
       builder: (context, viewModel, child) {
+        if (viewModel.isLoading == true) {
+          return Waiting.waitingCart();
+        }
         return Stack(
           children: [
             Padding(

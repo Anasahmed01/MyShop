@@ -1,4 +1,7 @@
+import 'dart:convert';
 import 'package:stacked/stacked.dart';
+import '../../../../../models/cart.dart';
+import '../../../../../services/cart/cart_service.dart';
 
 class PastOrderViewModel extends BaseViewModel {
   //Navigations
@@ -12,6 +15,30 @@ class PastOrderViewModel extends BaseViewModel {
 //     locator<NavigationService>().clearStackAndShow(Routes.webToCart,
 //         arguments: WebToCartArguments(lastUrl: currentUrl));
 //   }
+
+  List<CartModel> productData = [];
+  // List<Color> productColor = [];
+  List attribute = [];
+
+  CartModel? getCartData;
+
+  getCart() async {
+    isLoading = true;
+    notifyListeners();
+
+    var response = await CartService.getCart();
+
+    for (var item in response['response']) {
+      var attributes = json.decode(json.encode(item['attributes']).toString());
+      if (attributes['module'] == '0') {
+        attribute.add(Response.fromJson(item));
+      }
+      getCartData = CartModel.fromJson(response);
+    }
+
+    notifyListeners();
+    isLoading = false;
+  }
 
   bool isLoading = false;
   bool noInternet = false;

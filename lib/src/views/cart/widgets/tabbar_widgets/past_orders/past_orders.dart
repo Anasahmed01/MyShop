@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:shop/src/views/cart/widgets/tabbar_widgets/cart_tab/cart_tab_viewmodel.dart';
 import 'package:stacked/stacked.dart';
+import '../../waiting/waiting.dart';
 import 'past_order_viewmodel.dart';
 import 'widget/card.dart';
 
@@ -13,9 +13,12 @@ class PastOrderTab extends StatelessWidget {
     return ViewModelBuilder.reactive(
       viewModelBuilder: () => PastOrderViewModel(),
       onViewModelReady: (viewModel) async {
-        //await viewModel.getPastOrder();
+        await viewModel.getCart();
       },
       builder: (context, viewModel, child) {
+        if (viewModel.isLoading == true) {
+          return Waiting.waitingPastOrder();
+        }
         return Container(
           color: Colors.white,
           height: double.infinity,
@@ -23,7 +26,7 @@ class PastOrderTab extends StatelessWidget {
           child: AnimationLimiter(
             child: Column(children: [
               Expanded(
-                child: pastOrderCard(cartTabViewModel: CartTabViewModel()),
+                child: pastOrderCard(viewModel: viewModel),
               ),
             ]),
           ),

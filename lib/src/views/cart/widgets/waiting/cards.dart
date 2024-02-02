@@ -94,15 +94,15 @@ class WaitingCards {
                   ),
                 ),
               ),
-              const SizedBox(width: 10),
-              Column(
-                children: [
-                  WaitingReusable.imageSkeleton(
-                      height: 120,
-                      width: 40,
-                      borderRadius: BorderRadius.circular(30))
-                ],
-              )
+              // const SizedBox(width: 10),
+              // Column(
+              //   children: [
+              //     WaitingReusable.imageSkeleton(
+              //         height: 120,
+              //         width: 40,
+              //         borderRadius: BorderRadius.circular(30))
+              //   ],
+              // )
             ],
           ),
         ),
@@ -193,15 +193,15 @@ class WaitingCards {
                   ),
                 ),
               ),
-              const SizedBox(width: 10),
-              Column(
-                children: [
-                  WaitingReusable.imageSkeleton(
-                      height: 120,
-                      width: 40,
-                      borderRadius: BorderRadius.circular(30))
-                ],
-              )
+              // const SizedBox(width: 10),
+              // Column(
+              //   children: [
+              //     WaitingReusable.imageSkeleton(
+              //         height: 120,
+              //         width: 40,
+              //         borderRadius: BorderRadius.circular(30))
+              //   ],
+              // )
             ],
           ),
         ),

@@ -19,7 +19,7 @@ class WalletViewModel extends BaseViewModel {
     currentUser = users.userData;
     isLoading = false;
     notifyListeners();
-    // return await users.getUserData();
+    return await users.getUserData();
   }
 
   //TODO: GET TOTAL PRICE NOT COMPLET
