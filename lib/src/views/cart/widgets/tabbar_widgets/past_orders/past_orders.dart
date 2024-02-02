@@ -13,7 +13,7 @@ class PastOrderTab extends StatelessWidget {
     return ViewModelBuilder.reactive(
       viewModelBuilder: () => PastOrderViewModel(),
       onViewModelReady: (viewModel) async {
-        await viewModel.getCart();
+        await viewModel.getPastOrder();
       },
       builder: (context, viewModel, child) {
         if (viewModel.isLoading == true) {

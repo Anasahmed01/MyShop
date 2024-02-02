@@ -35,20 +35,24 @@ class GetAddressModel {
 class Response {
   int id;
   int userId;
-  String addressTitle;
+  String houseNo;
   String province;
+  String country;
   String city;
   String street;
+  String status;
   DateTime createdAt;
   DateTime updatedAt;
 
   Response({
     required this.id,
     required this.userId,
-    required this.addressTitle,
+    required this.houseNo,
     required this.province,
+    required this.country,
     required this.city,
     required this.street,
+    required this.status,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -56,10 +60,12 @@ class Response {
   factory Response.fromJson(Map<String, dynamic> json) => Response(
         id: json["id"],
         userId: json["user_id"],
-        addressTitle: json["address_title"],
+        houseNo: json["house_no"],
         province: json["province"],
+        country: json["country"],
         city: json["city"],
         street: json["street"],
+        status: json["status"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
       );
@@ -67,10 +73,12 @@ class Response {
   Map<String, dynamic> toJson() => {
         "id": id,
         "user_id": userId,
-        "address_title": addressTitle,
+        "house_no": houseNo,
         "province": province,
+        "country": country,
         "city": city,
         "street": street,
+        "status": status,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
       };

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:shop/src/views/cart/widgets/tabbar_widgets/past_orders/past_order_viewmodel.dart';
+import '../../../../../../reusable_widgets/buttons/app_buttons.dart';
 import '../../../../../../reusable_widgets/card_widget/size_color.dart';
 import '../../../../../../reusable_widgets/image/url_image.dart';
 import '../../../../../../reusable_widgets/text/text.dart';
@@ -31,8 +32,7 @@ Widget pastOrderCard({required PastOrderViewModel viewModel}) {
                             padding: const EdgeInsets.symmetric(horizontal: 10),
                             child: UrlImage.image(
                               filterQuality: FilterQuality.low,
-                              imageUrl:
-                                  viewModel.attribute[index].attributes.logo,
+                              imageUrl: viewModel.attribute[index].logo,
                               context: context,
                               height: 40,
                               elevation: 0,
@@ -43,16 +43,23 @@ Widget pastOrderCard({required PastOrderViewModel viewModel}) {
                             padding: const EdgeInsets.symmetric(horizontal: 10),
                             child: UrlImage.image(
                               filterQuality: FilterQuality.low,
-                              imageUrl: viewModel
-                                  .attribute[index].attributes.productImage,
+                              imageUrl: viewModel.attribute[index].productImage,
                               context: context,
                               height: 120,
                               elevation: 10,
                               fit: BoxFit.fill,
                             ),
                           ),
-                          const SizedBox(
-                            height: 10,
+                          Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: InkWell(
+                              onTap: () {},
+                              child: customButton(
+                                  text: 'Add to cart',
+                                  buttonHeight: 30,
+                                  buttonwidth: 120,
+                                  buttonColor: AppColors.seconderyColor2),
+                            ),
                           ),
                         ],
                       ),
@@ -85,19 +92,17 @@ Widget pastOrderCard({required PastOrderViewModel viewModel}) {
                               Flexible(
                                 child: sizeColorWidget(
                                   heading: 'Size',
-                                  content: viewModel
-                                      .attribute[index].attributes.size,
+                                  content: viewModel.attribute[index].size,
                                   context: context,
                                 ),
                               ),
                               Flexible(
                                 child: sizeColorWidget(
                                   heading: 'Color',
-                                  content: viewModel
-                                      .attribute[index].attributes.color,
+                                  content: viewModel.attribute[index].color,
                                   context: context,
                                 ),
-                              )
+                              ),
                             ],
                           ),
                           Padding(
@@ -123,8 +128,7 @@ Widget pastOrderCard({required PastOrderViewModel viewModel}) {
                                     ),
                                     child: Center(
                                       child: CustomText.customSizedText(
-                                        text: viewModel.attribute[index]
-                                            .attributes.totalPrice,
+                                        text: viewModel.attribute[index].price,
                                         size: 18,
                                         maxFontSize: 18,
                                         minFontSize: 18,

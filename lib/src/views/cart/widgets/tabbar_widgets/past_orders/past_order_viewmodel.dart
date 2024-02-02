@@ -1,6 +1,5 @@
-import 'dart:convert';
+import 'package:shop/src/models/past_order.dart';
 import 'package:stacked/stacked.dart';
-import '../../../../../models/cart.dart';
 import '../../../../../services/cart/cart_service.dart';
 
 class PastOrderViewModel extends BaseViewModel {
@@ -16,24 +15,21 @@ class PastOrderViewModel extends BaseViewModel {
 //         arguments: WebToCartArguments(lastUrl: currentUrl));
 //   }
 
-  List<CartModel> productData = [];
   // List<Color> productColor = [];
-  List attribute = [];
+  List<Response> attribute = [];
 
-  CartModel? getCartData;
+  PastOrderModel? getCartData;
 
-  getCart() async {
+  getPastOrder() async {
     isLoading = true;
     notifyListeners();
 
-    var response = await CartService.getCart();
-
+    var response = await CartService.getPastOrder();
     for (var item in response['response']) {
-      var attributes = json.decode(json.encode(item['attributes']).toString());
-      if (attributes['module'] == '0') {
+      if (item['module'] == '0') {
         attribute.add(Response.fromJson(item));
       }
-      getCartData = CartModel.fromJson(response);
+      getCartData = PastOrderModel.fromJson(response);
     }
 
     notifyListeners();
