@@ -12,6 +12,7 @@ class WalletView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder.nonReactive(
       viewModelBuilder: () => WalletViewModel(),
+      onViewModelReady: (viewModel) => viewModel.getTransactions(),
       builder: (context, viewModel, child) {
         return SizedBox(
             height: double.infinity,
@@ -33,7 +34,7 @@ class WalletView extends StatelessWidget {
                     ),
                   ),
                   topWidget(context: context),
-                  previousTransaction(),
+                  WalletTransactions.previousTransactions(model: viewModel.walletTransaction!),
                 ],
               ),
             ));

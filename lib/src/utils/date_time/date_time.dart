@@ -31,3 +31,10 @@ String getFormattedDate(DateTime date) {
 
   return outputDate.toString();
 }
+
+String formattedDate(DateTime date) {
+  var outputFormat = DateFormat('HH:mm MMM dd yyyy');
+  var outputDate = outputFormat.format(date);
+
+  return outputDate.toString();
+}

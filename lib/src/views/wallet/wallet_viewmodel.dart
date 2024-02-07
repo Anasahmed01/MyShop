@@ -1,10 +1,10 @@
 // ignore_for_file: avoid_print
 
-import 'package:shop/src/models/order_history.dart';
-import 'package:shop/src/services/order_history/order_history.dart';
+import 'package:shop/src/services/wallet_history/wallet_history.dart';
 import 'package:stacked/stacked.dart';
 import '../../app/app.locator.dart';
 import '../../models/user.dart';
+import '../../models/wallet_transaction.dart';
 import '../../services/user_services/user_service.dart';
 
 class WalletViewModel extends BaseViewModel {
@@ -22,25 +22,21 @@ class WalletViewModel extends BaseViewModel {
     return await users.getUserData();
   }
 
-  //TODO: GET TOTAL PRICE NOT COMPLET
-
-  OrderHistoryModel? orderHistory;
+  WalletTransactionModel? walletTransaction;
   double totalPrice = 0;
 
   final walletService = locator<WalletService>();
+
   getTransactions() async {
-    if (walletService.orderHistory != null) {
-      orderHistory = walletService.orderHistory;
-      totalPrice = walletService.totalPrice;
-      notifyListeners();
+    isLoading = true;
+    notifyListeners();
+
+    if (walletService.wallet != null) {
+      walletTransaction = walletService.wallet;
     }
 
-    var transaction = await walletService.getTransection();
-
-    if (transaction == true) {
-      orderHistory = walletService.orderHistory;
-      totalPrice = walletService.totalPrice;
-      notifyListeners();
+    if (walletService.getWallet() != null) {
+      walletTransaction = walletService.wallet;
     }
   }
 }

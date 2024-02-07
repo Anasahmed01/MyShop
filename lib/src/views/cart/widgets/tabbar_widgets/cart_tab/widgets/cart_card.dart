@@ -67,7 +67,7 @@ Widget cartCard({
                                     top: 20, bottom: 5.0, right: 30),
                                 child: CustomText.customSizedText(
                                   text: viewModel.attribute[index].name,
-                                  maxLine: 2,
+                                  maxLine: 1,
                                   size: 14,
                                   maxFontSize: 14,
                                   minFontSize: 14,
@@ -142,11 +142,12 @@ Widget cartCard({
                                         ),
                                         child: Center(
                                           child: CustomText.customSizedText(
-                                            text: viewModel.attribute[index]
-                                                .attributes.totalPrice,
-                                            size: 14,
-                                            minFontSize: 12,
-                                            maxFontSize: 14,
+                                            text:
+                                                "${viewModel.attribute[index].attributes.totalPrice} "
+                                                "${viewModel.getCartData!.data.currencySymbol}",
+                                            size: 16,
+                                            minFontSize: 16,
+                                            maxFontSize: 16,
                                             color: AppColors.whiteColor,
                                           ),
                                         ),
@@ -181,8 +182,7 @@ Widget cartCard({
                   child: IconButton(
                     onPressed: () {
                       // viewModel.removeCart(
-                      //   productId: cart[index].id,
-                      // );
+                      //     productId: viewModel.attribute[index].id);
                     },
                     icon: Icon(
                       Icons.close_sharp,

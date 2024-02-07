@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:shop/src/models/cart.dart';
+import 'package:shop/src/network/api_client.dart';
 import 'package:shop/src/services/cart/cart_service.dart';
+import 'package:shop/src/services/storage/storage.dart';
+import 'package:shop/src/utils/app_constraints/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import '../../../../../app/app.locator.dart';
@@ -18,8 +21,6 @@ class CartTabViewModel extends BaseViewModel {
   //       arguments: ProductInfoViewArguments(productUrl: productUrl));
   // }
 
-  List<CartModel> productData = [];
-  // List<Color> productColor = [];
   List attribute = [];
 
   CartModel? getCartData;
@@ -40,6 +41,24 @@ class CartTabViewModel extends BaseViewModel {
 
     notifyListeners();
     isLoading = false;
+  }
+
+  bool isCartRemove = true;
+  removeCart({required int productId}) async {
+    isLoading = true;
+    isCartRemove = false;
+    notifyListeners();
+
+    String? id = LocalStorageServices.getUserId();
+    var response = await ApiClient.postRes(
+        endPoint: AppStrings.removeCart + id!, body: {});
+
+    if (response['response'] = true) {
+      attribute.removeWhere((element) => element.id == productId);
+    }
+    isCartRemove = true;
+    isLoading = true;
+    notifyListeners();
   }
 
   increment() {

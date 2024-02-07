@@ -13,7 +13,7 @@ import 'package:stacked_shared/stacked_shared.dart';
 
 import '../services/brand/brand.dart';
 import '../services/cart/cart_service.dart';
-import '../services/order_history/order_history.dart';
+import '../services/wallet_history/wallet_history.dart';
 import '../services/user_services/user_service.dart';
 
 final locator = StackedLocator.instance;

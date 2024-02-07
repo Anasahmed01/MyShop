@@ -11,7 +11,6 @@ Widget pendingOrderCard({required PendingOrderViewModel viewModel}) {
     child: ListView.builder(
       itemCount: viewModel.attribute.length,
       itemBuilder: (context, index) {
-        
         return AnimationConfiguration.staggeredList(
           position: index,
           delay: const Duration(milliseconds: 200),
@@ -20,7 +19,6 @@ Widget pendingOrderCard({required PendingOrderViewModel viewModel}) {
               onTap: () {},
               child: Card(
                 elevation: 5,
-                color: AppColors.whiteColor,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -70,7 +68,7 @@ Widget pendingOrderCard({required PendingOrderViewModel viewModel}) {
                                 const EdgeInsets.only(top: 20, bottom: 5.0),
                             child: CustomText.customSizedText(
                               text: viewModel.attribute[index].name,
-                              maxLine: 2,
+                              maxLine: 1,
                               overflow: TextOverflow.ellipsis,
                               size: 14,
                               maxFontSize: 14,
@@ -124,9 +122,10 @@ Widget pendingOrderCard({required PendingOrderViewModel viewModel}) {
                                     ),
                                     child: Center(
                                       child: CustomText.customSizedText(
-                                        text: viewModel.attribute[index].price +
-                                            viewModel.getCartData!.currency,
-                                        size: 18,
+                                        text:
+                                            '${viewModel.attribute[index].price} '
+                                            '${viewModel.getCartData!.currency}',
+                                        size: 16,
                                         maxFontSize: 16,
                                         minFontSize: 16,
                                         color: AppColors.whiteColor,

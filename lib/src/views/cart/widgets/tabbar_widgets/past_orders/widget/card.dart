@@ -111,6 +111,42 @@ Widget pastOrderCard({required PastOrderViewModel viewModel}) {
                             child: Row(
                               children: [
                                 CustomText.customSizedText(
+                                  text: 'Quantity:   ',
+                                  size: 12,
+                                  color: AppColors.blackColor,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: 15.0,
+                                  ),
+                                  child: Container(
+                                    width: 105,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                      color: AppColors.primaryColor,
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: Center(
+                                      child: CustomText.customSizedText(
+                                        text:
+                                            viewModel.attribute[index].quantity,
+                                        size: 16,
+                                        maxFontSize: 16,
+                                        minFontSize: 16,
+                                        color: AppColors.whiteColor,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 15.0, bottom: 20),
+                            child: Row(
+                              children: [
+                                CustomText.customSizedText(
                                   text: 'Total Price:',
                                   size: 12,
                                   color: AppColors.blackColor,
@@ -128,10 +164,12 @@ Widget pastOrderCard({required PastOrderViewModel viewModel}) {
                                     ),
                                     child: Center(
                                       child: CustomText.customSizedText(
-                                        text: viewModel.attribute[index].price,
-                                        size: 18,
-                                        maxFontSize: 18,
-                                        minFontSize: 18,
+                                        text:
+                                            '${viewModel.attribute[index].price} '
+                                            '${viewModel.getCartData!.data.currencySymbol}',
+                                        size: 16,
+                                        maxFontSize: 16,
+                                        minFontSize: 16,
                                         color: AppColors.whiteColor,
                                       ),
                                     ),

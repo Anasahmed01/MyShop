@@ -4,7 +4,7 @@ import 'package:shop/src/views/web_view/web_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import '../services/cart/cart_service.dart';
-import '../services/order_history/order_history.dart';
+import '../services/wallet_history/wallet_history.dart';
 import '../views/auth/login/login.dart';
 import '../views/auth/signup/signup.dart';
 import '../views/basic/splash/splash.dart';

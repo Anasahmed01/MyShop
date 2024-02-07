@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:shop/src/reusable_widgets/errors/error.dart';
 import 'package:stacked/stacked.dart';
+import '../../../../../utils/style/images/images.dart';
+import '../../../../../utils/style/svg/svg.dart';
+import '../../empty.dart';
 import '../../waiting/waiting.dart';
 import 'widgets/cart_card.dart';
 import 'cart_tab_viewmodel.dart';
@@ -18,26 +23,48 @@ class CartTab extends StatelessWidget {
         if (viewModel.isLoading == true) {
           return Waiting.waitingCart();
         }
-        return Stack(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(
-                  bottom: MediaQuery.sizeOf(context).height * 0.05, top: 0),
-              child: Container(
-                color: Colors.white,
-                height: double.infinity,
-                width: double.infinity,
-                child: cartCard(
-                  viewModel: viewModel,
+        if (viewModel.noInternet == true) {
+          return CustomError.noInternet();
+        }
+        if (viewModel.otherError == true) {
+          return CustomError.otherError();
+        }
+        if (viewModel.attribute.isEmpty) {
+          return emptyCart(
+              icon: Image.asset(AppImage.yuGo, height: 50),
+              upperText: 'Cart is Empty!',
+              lowerText: 'Please add some products!');
+        }
+        if (viewModel.attribute.isEmpty) {
+          return emptyCart(
+              icon: SvgPicture.asset(AppSVG.weGo, height: 50),
+              upperText: 'Cart is Empty!',
+              lowerText: 'Please add some products!');
+        }
+
+        if (viewModel.getCartData != null) {
+          return Stack(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.sizeOf(context).height * 0.05, top: 0),
+                child: Container(
+                  color: Colors.white,
+                  height: double.infinity,
+                  width: double.infinity,
+                  child: cartCard(
+                    viewModel: viewModel,
+                  ),
                 ),
               ),
-            ),
-            Positioned(
-              bottom: 5,
-              child: Container(),
-            ),
-          ],
-        );
+              Positioned(
+                bottom: 5,
+                child: Container(),
+              ),
+            ],
+          );
+        }
+        return Container();
       },
     );
   }
