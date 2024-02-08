@@ -69,11 +69,10 @@ Widget pastOrderCard({required PastOrderViewModel viewModel}) {
                       flex: 2,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
-                            padding:
-                                const EdgeInsets.only(top: 20, bottom: 5.0),
+                            padding: const EdgeInsets.only(
+                                top: 20, bottom: 5.0, right: 16),
                             child: CustomText.customSizedText(
                               text: viewModel.attribute[index].name,
                               maxLine: 2,
@@ -85,29 +84,25 @@ Widget pastOrderCard({required PastOrderViewModel viewModel}) {
                               textAlign: TextAlign.left,
                             ),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Flexible(
-                                child: sizeColorWidget(
-                                  heading: 'Size',
-                                  content: viewModel.attribute[index].size,
-                                  context: context,
-                                ),
+                              sizeColorWidget(
+                                heading: 'Size',
+                                content: viewModel.attribute[index].size,
+                                context: context,
                               ),
-                              Flexible(
-                                child: sizeColorWidget(
-                                  heading: 'Color',
-                                  content: viewModel.attribute[index].color,
-                                  context: context,
-                                ),
+                              sizeColorWidget(
+                                heading: 'Color',
+                                content: viewModel.attribute[index].color,
+                                context: context,
                               ),
                             ],
                           ),
                           Padding(
-                            padding:
-                                const EdgeInsets.only(top: 15.0, bottom: 20),
+                            padding: const EdgeInsets.only(
+                              top: 30.0,
+                            ),
                             child: Row(
                               children: [
                                 CustomText.customSizedText(

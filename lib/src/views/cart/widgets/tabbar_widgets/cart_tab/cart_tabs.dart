@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shop/src/reusable_widgets/errors/error.dart';
+import 'package:shop/src/views/cart/widgets/tabbar_widgets/cart_tab/widgets/checkout.dart';
 import 'package:stacked/stacked.dart';
 import '../../../../../utils/style/images/images.dart';
 import '../../../../../utils/style/svg/svg.dart';
@@ -59,7 +60,9 @@ class CartTab extends StatelessWidget {
               ),
               Positioned(
                 bottom: 5,
-                child: Container(),
+                child: viewModel.getCartData == null
+                    ? Container()
+                    : checkOut(viewModel: viewModel, context: context,model: viewModel.getCartData!),
               ),
             ],
           );

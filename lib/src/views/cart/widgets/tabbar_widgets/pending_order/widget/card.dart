@@ -17,130 +17,153 @@ Widget pendingOrderCard({required PendingOrderViewModel viewModel}) {
           child: SlideAnimation(
             child: InkWell(
               onTap: () {},
-              child: Card(
-                elevation: 5,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Flexible(
-                      flex: 1,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: UrlImage.image(
-                              filterQuality: FilterQuality.low,
-                              imageUrl:
-                                  viewModel.attribute[index].attributes.logo,
-                              context: context,
-                              height: 40,
-                              elevation: 0,
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: UrlImage.image(
-                              filterQuality: FilterQuality.low,
-                              imageUrl: viewModel
-                                  .attribute[index].attributes.productImage,
-                              context: context,
-                              height: 120,
-                              elevation: 10,
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(width: 5),
-                    Flexible(
-                      flex: 2,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(top: 20, bottom: 5.0),
-                            child: CustomText.customSizedText(
-                              text: viewModel.attribute[index].name,
-                              maxLine: 1,
-                              overflow: TextOverflow.ellipsis,
-                              size: 14,
-                              maxFontSize: 14,
-                              minFontSize: 14,
-                              color: AppColors.blackColor,
-                              textAlign: TextAlign.left,
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+              child: Stack(
+                children: [
+                  Card(
+                    elevation: 5,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Flexible(
+                          flex: 1,
+                          child: Column(
                             children: [
-                              Flexible(
-                                child: sizeColorWidget(
-                                  heading: 'Size',
-                                  content: viewModel
-                                      .attribute[index].attributes.size,
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                child: UrlImage.image(
+                                  filterQuality: FilterQuality.low,
+                                  imageUrl: viewModel
+                                      .attribute[index].attributes.logo,
                                   context: context,
+                                  height: 40,
+                                  elevation: 0,
+                                  fit: BoxFit.contain,
                                 ),
                               ),
-                              Flexible(
-                                child: sizeColorWidget(
-                                  heading: 'Color',
-                                  content: viewModel
-                                      .attribute[index].attributes.color,
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                child: UrlImage.image(
+                                  filterQuality: FilterQuality.low,
+                                  imageUrl: viewModel
+                                      .attribute[index].attributes.productImage,
                                   context: context,
+                                  height: 120,
+                                  elevation: 10,
+                                  fit: BoxFit.fill,
                                 ),
-                              )
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
                             ],
                           ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(top: 15.0, bottom: 20),
-                            child: Row(
-                              children: [
-                                CustomText.customSizedText(
-                                  text: 'Total Price:',
-                                  size: 12,
+                        ),
+                        const SizedBox(width: 5),
+                        Flexible(
+                          flex: 2,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 20, bottom: 5.0, right: 30),
+                                child: CustomText.customSizedText(
+                                  text: viewModel.attribute[index].name,
+                                  maxLine: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  size: 14,
+                                  maxFontSize: 14,
+                                  minFontSize: 14,
                                   color: AppColors.blackColor,
+                                  textAlign: TextAlign.left,
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                    left: 15.0,
-                                  ),
-                                  child: Container(
-                                    width: 105,
-                                    height: 30,
-                                    decoration: BoxDecoration(
-                                      color: AppColors.primaryColor,
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                    child: Center(
-                                      child: CustomText.customSizedText(
-                                        text:
-                                            '${viewModel.attribute[index].price} '
-                                            '${viewModel.getCartData!.currency}',
-                                        size: 16,
-                                        maxFontSize: 16,
-                                        minFontSize: 16,
-                                        color: AppColors.whiteColor,
+                              ),
+                              SizedBox(
+                                height: 60,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Flexible(
+                                      child: sizeColorWidget(
+                                        heading: 'Size',
+                                        content: viewModel
+                                            .attribute[index].attributes.size,
+                                        context: context,
                                       ),
                                     ),
-                                  ),
+                                    Flexible(
+                                      child: sizeColorWidget(
+                                        heading: 'Color',
+                                        content: viewModel
+                                            .attribute[index].attributes.color,
+                                        context: context,
+                                      ),
+                                    )
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 15.0, bottom: 20),
+                                child: Row(
+                                  children: [
+                                    CustomText.customSizedText(
+                                      text: 'Total Price:',
+                                      size: 12,
+                                      color: AppColors.blackColor,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                        left: 15.0,
+                                      ),
+                                      child: Container(
+                                        width: 105,
+                                        height: 30,
+                                        decoration: BoxDecoration(
+                                          color: AppColors.primaryColor,
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Center(
+                                          child: CustomText.customSizedText(
+                                            text:
+                                                '${viewModel.attribute[index].price} '
+                                                '${viewModel.getCartData!.currency}',
+                                            size: 16,
+                                            maxFontSize: 16,
+                                            minFontSize: 16,
+                                            color: AppColors.whiteColor,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                    top: 0,
+                    right: 5,
+                    child: IconButton(
+                      onPressed: () async {
+                        await viewModel.removeCart(
+                            productId: viewModel.attribute[index].id);
+                      },
+                      icon: Icon(
+                        Icons.close_sharp,
+                        color: AppColors.redColor,
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

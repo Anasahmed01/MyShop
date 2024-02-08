@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop/src/models/cart.dart';
 import '../../../../../../reusable_widgets/buttons/app_buttons.dart';
 import '../../../../../../reusable_widgets/text/text.dart';
 import '../../../../../../utils/style/color/app_colors.dart';
@@ -6,25 +7,26 @@ import '../../../../../../utils/style/container/dec_container.dart';
 import '../cart_tab_viewmodel.dart';
 
 Widget checkOut({
-  //required CartModel model,
-  required int yuGoWeGo,
+  required CartModel model,
   required CartTabViewModel viewModel,
   required BuildContext context,
 }) {
-  // double yuGoShipping = double.parse(model.data.yugoShippingPrice);
-  // double weGoShipping = double.parse(model.data.wegoShippingPrice);
-  // double yuGoTotal = double.parse(model.data.yugoTotalPrice);
-  // double weGoTotal = double.parse(model.data.wegoTotalPrice);
-
+  double totalPrice = double.parse(model.data.totalPrice);
+  double serviceFee = double.parse(model.data.serviceFee);
+  double couponPrice = double.parse(model.data.couponPrice);
+  double shippingPrice = double.parse(model.data.shippingPrice);
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 10),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        checkOutDetail(
-          context: context,
-          totalPrice: 12,
-          shippingTotal: 12,
+        Visibility(
+          visible: viewModel.isTotalShowed,
+          child: checkOutDetail(
+            context: context,
+            totalPrice: 12,
+            shippingTotal: 12,
+          ),
         ),
         shadowedBox(
           borderRadius: BorderRadius.circular(30),
@@ -49,15 +51,22 @@ Widget checkOut({
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    CustomText.customSizedText(
-                        text: 'Total Price : ',
-                        size: 12,
-                        color: viewModel.isTotalShowed
-                            ? AppColors.whiteColor
-                            : AppColors.blackColor),
                     Flexible(
+                      flex: 2,
                       child: CustomText.customSizedText(
-                        text: '120\$',
+                          text: 'Total Price : ',
+                          size: 12,
+                          minFontSize: 12,
+                          maxFontSize: 12,
+                          color: viewModel.isTotalShowed
+                              ? AppColors.whiteColor
+                              : AppColors.blackColor),
+                    ),
+                    Flexible(
+                      flex: 3,
+                      child: CustomText.customSizedText(
+                        text:
+                            '${(totalPrice + shippingPrice + serviceFee - couponPrice).toStringAsFixed(2)} ${model.data.currencySymbol}',
                         minFontSize: 12,
                         maxFontSize: 25,
                         size: 18,

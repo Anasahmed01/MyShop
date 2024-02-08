@@ -67,7 +67,7 @@ Widget cartCard({
                                     top: 20, bottom: 5.0, right: 30),
                                 child: CustomText.customSizedText(
                                   text: viewModel.attribute[index].name,
-                                  maxLine: 1,
+                                  maxLine: 2,
                                   size: 14,
                                   maxFontSize: 14,
                                   minFontSize: 14,
@@ -180,9 +180,9 @@ Widget cartCard({
                   top: 0,
                   right: 5,
                   child: IconButton(
-                    onPressed: () {
-                      // viewModel.removeCart(
-                      //     productId: viewModel.attribute[index].id);
+                    onPressed: () async {
+                      await viewModel.removeCart(
+                          productId: viewModel.attribute[index].id);
                     },
                     icon: Icon(
                       Icons.close_sharp,

@@ -4,7 +4,7 @@ import '../../utils/style/color/app_colors.dart';
 
 Widget sizeColorWidget({
   required String heading,
-  required  content,
+  required content,
   required BuildContext context,
 }) {
   return Visibility(
