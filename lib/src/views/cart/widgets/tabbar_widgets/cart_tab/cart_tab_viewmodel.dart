@@ -32,9 +32,8 @@ class CartTabViewModel extends BaseViewModel {
       if (attributes['module'] == '0') {
         attribute.add(Response.fromJson(item));
       }
-      getCartData = CartModel.fromJson(response);
     }
-
+    getCartData = CartModel.fromJson(response);
     notifyListeners();
     isLoading = false;
   }
@@ -48,21 +47,21 @@ class CartTabViewModel extends BaseViewModel {
       var response = await ApiClient.postRes(
           endPoint: AppStrings.removeCart + productId, body: {});
 
-      if (response['response'] = true) {
-        // TODO: update price on run type
-        // var res = json.decode(json.encode(response['response']).toString());
+      if (response['success'] = true) {
+        var res = json.decode(json.encode(response['response']).toString());
 
-        // getCartData!.data.serviceFee = res['service_fee'];
-        // getCartData!.data.shippingPrice = res['shipping_price'];
-        // getCartData!.data.yugoProductPrice = res['yugo_product_price'];
-        // getCartData!.data.totalPrice = res['total_price'];
-        // getCartData!.data.couponPrice = res['coupon_price'];
+        getCartData!.data.serviceFee = res['service_fee'];
+        getCartData!.data.shippingPrice = res['shipping_price'];
+        getCartData!.data.yugoProductPrice = res['yugo_product_price'];
+        getCartData!.data.totalPrice = res['total_price'];
+        getCartData!.data.couponPrice = res['coupon_price'];
 
         attribute.removeWhere((element) => element.id == productId);
       }
+
       NavSnackbarService.showSnackbar('', 'Remove Cart SuccessFully');
     } catch (e) {
-      print('REMOVE>>>>>>>>>>>>>>$e');
+      NavSnackbarService.showSnackbar('', 'Try Again Later');
     }
 
     isCartRemove = true;
