@@ -62,7 +62,10 @@ class CartTab extends StatelessWidget {
                 bottom: 5,
                 child: viewModel.getCartData == null
                     ? Container()
-                    : checkOut(viewModel: viewModel, context: context,model: viewModel.getCartData!),
+                    : checkOut(
+                        viewModel: viewModel,
+                        context: context,
+                        model: viewModel.getCartData!),
               ),
             ],
           );

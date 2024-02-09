@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:shop/src/models/cart.dart';
 import 'package:shop/src/network/api_client.dart';
 import 'package:shop/src/services/cart/cart_service.dart';
+import 'package:shop/src/services/snackbar_service/snackbar_service.dart';
 import 'package:shop/src/utils/app_constraints/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -15,10 +16,6 @@ class CartTabViewModel extends BaseViewModel {
         arguments:
             CheckOutViewArguments(totalAmount: totalAmount, flag: yuGoWeGo));
   }
-  // navigateToProduct({required String productUrl}) {
-  //   locator<NavigationService>().navigateTo(Routes.productInfoView,
-  //       arguments: ProductInfoViewArguments(productUrl: productUrl));
-  // }
 
   List attribute = [];
 
@@ -47,14 +44,27 @@ class CartTabViewModel extends BaseViewModel {
     isCartRemove = false;
     notifyListeners();
 
-    //String? id = LocalStorageServices.getUserId();
-    var response = await ApiClient.postRes(
-        endPoint: AppStrings.removeCart + productId, body: {});
+    try {
+      var response = await ApiClient.postRes(
+          endPoint: AppStrings.removeCart + productId, body: {});
 
-    if (response['response'] = true) {
-      attribute.removeWhere((element) => element.id == productId);
-      notifyListeners();
+      if (response['response'] = true) {
+        // TODO: update price on run type
+        // var res = json.decode(json.encode(response['response']).toString());
+
+        // getCartData!.data.serviceFee = res['service_fee'];
+        // getCartData!.data.shippingPrice = res['shipping_price'];
+        // getCartData!.data.yugoProductPrice = res['yugo_product_price'];
+        // getCartData!.data.totalPrice = res['total_price'];
+        // getCartData!.data.couponPrice = res['coupon_price'];
+
+        attribute.removeWhere((element) => element.id == productId);
+      }
+      NavSnackbarService.showSnackbar('', 'Remove Cart SuccessFully');
+    } catch (e) {
+      print('REMOVE>>>>>>>>>>>>>>$e');
     }
+
     isCartRemove = true;
     notifyListeners();
   }
@@ -70,6 +80,7 @@ class CartTabViewModel extends BaseViewModel {
   }
 
   var curruntColor = 0;
+  bool isUpdating = false;
   bool isTotalShowed = false;
   bool isLoading = false;
   bool noInternet = false;

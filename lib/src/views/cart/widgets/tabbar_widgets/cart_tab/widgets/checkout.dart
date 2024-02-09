@@ -14,7 +14,9 @@ Widget checkOut({
   double totalPrice = double.parse(model.data.totalPrice);
   double serviceFee = double.parse(model.data.serviceFee);
   double couponPrice = double.parse(model.data.couponPrice);
-  double shippingPrice = double.parse(model.data.shippingPrice);
+  double shippingFee = double.parse(model.data.shippingPrice);
+  String currencySymbol = model.data.currencySymbol;
+  double yugoProductPrice = double.parse(model.data.yugoProductPrice);
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 10),
     child: Column(
@@ -23,9 +25,12 @@ Widget checkOut({
         Visibility(
           visible: viewModel.isTotalShowed,
           child: checkOutDetail(
+            currencySymbol: currencySymbol,
+            yuGoPrice: yugoProductPrice,
+            serviceFee: serviceFee,
             context: context,
-            totalPrice: 12,
-            shippingTotal: 12,
+            totalPrice: totalPrice,
+            shippingFee: shippingFee,
           ),
         ),
         shadowedBox(
@@ -66,7 +71,7 @@ Widget checkOut({
                       flex: 3,
                       child: CustomText.customSizedText(
                         text:
-                            '${(totalPrice + shippingPrice + serviceFee - couponPrice).toStringAsFixed(2)} ${model.data.currencySymbol}',
+                            '${(totalPrice + shippingFee + serviceFee - couponPrice).toStringAsFixed(2)} ${model.data.currencySymbol}',
                         minFontSize: 12,
                         maxFontSize: 25,
                         size: 18,
@@ -108,80 +113,76 @@ Widget checkOut({
   );
 }
 
-Widget checkOutDetail(
-    {required BuildContext context,
-    required double totalPrice,
-    required double shippingTotal}) {
-  double finalPrice = totalPrice + shippingTotal;
+Widget checkOutDetail({
+  required BuildContext context,
+  required double totalPrice,
+  required double shippingFee,
+  required double serviceFee,
+  required double yuGoPrice,
+  required String currencySymbol,
+}) {
   return Card(
     elevation: 10,
     child: SizedBox(
-      height: 100, //set this to 160 if uncomment the lines below
+      height: 140, //set this to 160 if uncomment the lines below
       width: MediaQuery.of(context).size.width * 0.9,
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                CustomText.customSizedText(
-                    text: 'Total Price',
-                    size: 14,
-                    color: AppColors.primaryColor),
-                CustomText.customSizedText(
-                    text: '${finalPrice.toStringAsFixed(1)} TL',
-                    size: 14,
-                    color: AppColors.blackColor),
-              ],
-            ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //   children: [
-            //     CustomText.customSizedText(
-            //         text: 'Service Fee', size: 14, color: AppColors.greyColor),
-            //     CustomText.customSizedText(
-            //         text: '0.0 TL', size: 14, color: AppColors.blackColor),
-            //   ],
-            // ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //   children: [
-            //     CustomText.customSizedText(
-            //         text: 'Consolidation & Quality Control',
-            //         size: 14,
-            //         color: AppColors.greyColor),
-            //     CustomText.customSizedText(
-            //         text: '0.0 TL', size: 14, color: AppColors.blackColor),
-            //   ],
-            // ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                CustomText.customSizedText(
-                    text: 'Shipping Fee', size: 14, color: AppColors.greyColor),
-                CustomText.customSizedText(
-                    text: '${shippingTotal.toStringAsFixed(1)} TL',
-                    size: 14,
-                    color: AppColors.blackColor),
-              ],
-            ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //   children: [
-            //     CustomText.customSizedText(
-            //       text: 'YUGO Products Price',
-            //       size: 14,
-            //       color: AppColors.primaryColor,
-            //     ),
-            //     CustomText.customSizedText(
-            //         text: '0.0 TL', size: 14, color: AppColors.blackColor),
-            //   ],
-            // ),
+            detailRow(
+                heading: 'Produt Total',
+                price:
+                    '${(yuGoPrice + totalPrice).toStringAsFixed(2)} $currencySymbol'),
+            detailRow(
+                heading: 'Shipping Free',
+                price: '${shippingFee.toStringAsFixed(2)} $currencySymbol'),
+            detailRow(
+                heading: 'Consolidation & Quality Control',
+                price: '${0.0.toStringAsFixed(1)} $currencySymbol'),
+            detailRow(
+                heading: 'Service Fee',
+                price: '${serviceFee.toStringAsFixed(2)} $currencySymbol'),
+            detailRow(
+                heading: 'YUGO Products Price',
+                price: '${yuGoPrice.toStringAsFixed(2)} $currencySymbol'),
           ],
         ),
       ),
     ),
+  );
+}
+
+Widget detailRow({
+  required String heading,
+  required String price,
+  Color? priceColor,
+  Color? headingColor,
+}) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      Flexible(
+        flex: 2,
+        child: CustomText.customSizedText(
+          text: heading,
+          size: 14,
+          minFontSize: 12,
+          maxFontSize: 14,
+          color: headingColor ?? AppColors.greyColor,
+        ),
+      ),
+      Flexible(
+        flex: 1,
+        child: CustomText.customSizedText(
+          text: price,
+          size: 14,
+          minFontSize: 12,
+          maxFontSize: 14,
+          color: priceColor ?? AppColors.blackColor,
+        ),
+      ),
+    ],
   );
 }
