@@ -59,7 +59,7 @@ class CartTab extends StatelessWidget {
                   ),
                 ),
               ),
-              Center(
+              Center(                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
                 child: AppLoadingIndicator.appLoader(
                   isLoading: viewModel.isUpdating,
                 ),
