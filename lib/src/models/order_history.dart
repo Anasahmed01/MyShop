@@ -2,6 +2,8 @@
 //
 //     final orderHistoryModel = orderHistoryModelFromJson(jsonString);
 
+// ignore_for_file: constant_identifier_names
+
 import 'dart:convert';
 
 OrderHistoryModel orderHistoryModelFromJson(String str) =>

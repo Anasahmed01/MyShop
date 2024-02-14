@@ -1,19 +1,25 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first, must_be_immutable
-// ignore_for_file: invalid_use_of_protected_member
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: invalid_use_of_protected_member, must_be_immutable, prefer_const_constructors
 
-import 'dart:developer' as devlog;
+import 'dart:developer' as dev;
+
 import 'package:flutter/material.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:shop/src/utils/style/color/app_colors.dart';
 import 'package:stacked/stacked.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+
 import 'package:shop/src/views/web_view/web_viewmodel.dart';
-import '../../utils/style/color/app_colors.dart';
+
+import 'widget/widget.dart';
 
 class WebViewr extends StatelessWidget {
-  String url = '';
-  int index = 0;
-  WebViewr({
+  final String url;
+  final String removers;
+  final int index;
+  const WebViewr({
     Key? key,
     required this.url,
+    required this.removers,
     required this.index,
   }) : super(key: key);
 
@@ -22,46 +28,23 @@ class WebViewr extends StatelessWidget {
     return ViewModelBuilder.reactive(
       viewModelBuilder: () => WebViewModel(),
       builder: (context, viewModel, child) {
-        var controller = WebViewController()
-          ..setJavaScriptMode(JavaScriptMode.unrestricted)
-          ..setBackgroundColor(AppColors.blackColor)
-          ..clearCache()
-          ..setNavigationDelegate(
-            NavigationDelegate(
-              onProgress: (int progress) {
-                // Update loading bar.
-              },
-              onWebResourceError: (WebResourceError error) {
-                devlog.log(error.toString());
-              },
-              onNavigationRequest: (NavigationRequest request) {
-                if (request.url.startsWith(url.toString())) {
-                  return NavigationDecision.prevent;
-                }
-                return NavigationDecision.navigate;
-              },
-            ),
-          )
-          ..loadRequest(
-            Uri.parse(url.toString()),
-          );
         return Scaffold(
           appBar: AppBar(
-            backgroundColor: const Color(0xFF5A4496),
+            backgroundColor: AppColors.primaryColor,
             actions: [
               InkWell(
                   onTap: () {
                     viewModel.show = false;
-                    viewModel.fkey.currentState!.setState(() {});
-                    controller.goBack();
+
+                    viewModel.controller.canGoBack();
                   },
                   child: const Icon(Icons.arrow_back_ios_new_rounded)),
               const SizedBox(width: 10),
               InkWell(
                   onTap: () {
                     viewModel.show = false;
-                    viewModel.fkey.currentState!.setState(() {});
-                    controller.goForward();
+
+                    viewModel.controller.canGoForward();
                   },
                   child: const Icon(Icons.arrow_forward_ios_rounded)),
               const SizedBox(width: 10),
@@ -74,33 +57,40 @@ class WebViewr extends StatelessWidget {
               const SizedBox(width: 10),
             ],
           ),
-          body: WebViewWidget(controller: controller),
-          // Column(
-          //   children: [
-          //
-          //     StatefulBuilder(
-          //       key: viewModel.loaderkey,
-          //       builder: (context, setState) {
-          //         return Visibility(
-          //           visible: viewModel.isLoading,
-          //           child: Center(
-          //             child: Container(
-          //               height: 100,
-          //               width: 100,
-          //               decoration: BoxDecoration(
-          //                   color: AppColors.whiteColor.withOpacity(0.8),
-          //                   borderRadius: BorderRadius.circular(10)),
-          //               child: CupertinoActivityIndicator(
-          //                 color: AppColors.primryColor,
-          //                 radius: 20,
-          //               ),
-          //             ),
-          //           ),
-          //         );
-          //       },
-          //     ),
-          //   ],
-          // ),
+          body: Stack(
+            children: [
+              InAppWebView(
+                initialUrlRequest: URLRequest(
+                  url: Uri.parse(url),
+                ),
+                onProgressChanged:
+                    (InAppWebViewController controller, int progress) =>
+                        viewModel.webLoader(progress: progress),
+                onWebViewCreated: (InAppWebViewController controller) {
+                  viewModel.controller = controller;
+                },
+                onLoadStart: (InAppWebViewController controller, url) async {
+                  String currentUrl = url.toString();
+                  await viewModel.checkUrl(link: currentUrl);
+                  dev.log(currentUrl);
+                  dev.log(viewModel.show.toString());
+                },
+                onScrollChanged: (controller, x, y) async {
+                  viewModel.removeringElements(
+                      controller: controller, removers: removers);
+                  Uri? currentUrl = await controller.getUrl();
+                  viewModel.scrollingPage(link: currentUrl.toString());
+                },
+              ),
+              webViewLoader(viewModel: viewModel),
+              waitingApi(isWaiting: viewModel.apiLoader),
+              addToCart(
+                  viewModel: viewModel,
+                  context: context,
+                  index: index,
+                  removers: removers),
+            ],
+          ),
         );
       },
     );

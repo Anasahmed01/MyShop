@@ -22,7 +22,9 @@ class AllBrandsViewModel extends BaseViewModel {
     locator<NavigationService>().navigateTo(
       Routes.webViewr,
       arguments: WebViewrArguments(
-          url: brandService.brands[index].siteUrl, index: navIndex),
+          url: brandService.brands[index].siteUrl,
+          index: navIndex,
+          removers: brandService.brands[index].remover),
     );
   }
 
@@ -37,7 +39,6 @@ class AllBrandsViewModel extends BaseViewModel {
         if (items.siteExistCategories
             .contains(brandService.category!.categoryNames[selectedCategory])) {
           selection.add(Response.fromJson(items.toJson()));
-        
         }
       }
     }

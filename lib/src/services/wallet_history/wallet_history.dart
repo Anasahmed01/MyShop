@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:shop/src/models/wallet_transaction.dart';
 import 'package:shop/src/network/api_client.dart';
 import 'package:shop/src/services/storage/storage.dart';

@@ -187,8 +187,11 @@ class StackedRouter extends _i1.RouterBase {
     _i8.WebViewr: (data) {
       final args = data.getArgs<WebViewrArguments>(nullOk: false);
       return _i17.MaterialPageRoute<dynamic>(
-        builder: (context) =>
-            _i8.WebViewr(key: args.key, url: args.url, index: args.index),
+        builder: (context) => _i8.WebViewr(
+            key: args.key,
+            url: args.url,
+            removers: args.removers,
+            index: args.index),
         settings: data,
       );
     },
@@ -282,6 +285,7 @@ class WebViewrArguments {
   const WebViewrArguments({
     this.key,
     required this.url,
+    required this.removers,
     required this.index,
   });
 
@@ -289,22 +293,27 @@ class WebViewrArguments {
 
   final String url;
 
+  final String removers;
+
   final int index;
 
   @override
   String toString() {
-    return '{"key": "$key", "url": "$url", "index": "$index"}';
+    return '{"key": "$key", "url": "$url", "removers": "$removers", "index": "$index"}';
   }
 
   @override
   bool operator ==(covariant WebViewrArguments other) {
     if (identical(this, other)) return true;
-    return other.key == key && other.url == url && other.index == index;
+    return other.key == key &&
+        other.url == url &&
+        other.removers == removers &&
+        other.index == index;
   }
 
   @override
   int get hashCode {
-    return key.hashCode ^ url.hashCode ^ index.hashCode;
+    return key.hashCode ^ url.hashCode ^ removers.hashCode ^ index.hashCode;
   }
 }
 
@@ -431,6 +440,7 @@ extension NavigatorStateExtension on _i18.NavigationService {
   Future<dynamic> navigateToWebViewr({
     _i17.Key? key,
     required String url,
+    required String removers,
     required int index,
     int? routerId,
     bool preventDuplicates = true,
@@ -439,7 +449,8 @@ extension NavigatorStateExtension on _i18.NavigationService {
         transition,
   }) async {
     return navigateTo<dynamic>(Routes.webViewr,
-        arguments: WebViewrArguments(key: key, url: url, index: index),
+        arguments: WebViewrArguments(
+            key: key, url: url, removers: removers, index: index),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -653,6 +664,7 @@ extension NavigatorStateExtension on _i18.NavigationService {
   Future<dynamic> replaceWithWebViewr({
     _i17.Key? key,
     required String url,
+    required String removers,
     required int index,
     int? routerId,
     bool preventDuplicates = true,
@@ -661,7 +673,8 @@ extension NavigatorStateExtension on _i18.NavigationService {
         transition,
   }) async {
     return replaceWith<dynamic>(Routes.webViewr,
-        arguments: WebViewrArguments(key: key, url: url, index: index),
+        arguments: WebViewrArguments(
+            key: key, url: url, removers: removers, index: index),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
