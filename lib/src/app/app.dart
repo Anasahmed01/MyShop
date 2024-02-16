@@ -19,6 +19,7 @@ import '../views/drawer/drawer_navigation/shipping_calculator/shipping_calculato
 import '../views/drawer/drawer_navigation/track_order/track_order.dart';
 import '../views/home/home.dart';
 import '../views/navigation/navigaiton.dart';
+import '../views/web_to_cart/web_to_cart.dart';
 
 @StackedApp(routes: [
   //Basic
@@ -46,6 +47,9 @@ import '../views/navigation/navigaiton.dart';
   MaterialRoute(page: PaymentMethodView),
   MaterialRoute(page: CheckOutView),
   MaterialRoute(page: PlacedOrder),
+
+  //Web To Cart
+  MaterialRoute(page: WebToCartView),
 ], dependencies: [
   Singleton(classType: NavigationService),
   Singleton(classType: WalletService),

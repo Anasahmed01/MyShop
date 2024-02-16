@@ -39,6 +39,8 @@ Widget addToCart({
                 SizedBox(width: 10),
                 Flexible(
                   child: Text('Add to cart',
+
+                  //TODO: web view argument
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 14,
