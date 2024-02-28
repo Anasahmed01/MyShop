@@ -5,7 +5,7 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/material.dart' as _i18;
+import 'package:flutter/material.dart' as _i19;
 import 'package:flutter/material.dart';
 import 'package:shop/src/views/auth/login/login.dart' as _i4;
 import 'package:shop/src/views/auth/signup/signup.dart' as _i5;
@@ -15,6 +15,8 @@ import 'package:shop/src/views/checkout/checkout_view.dart' as _i15;
 import 'package:shop/src/views/checkout/placed_order.dart' as _i16;
 import 'package:shop/src/views/drawer/drawer_navigation/customer_service/customer_service.dart'
     as _i11;
+import 'package:shop/src/views/drawer/drawer_navigation/edit_profile/edit_profile.dart'
+    as _i17;
 import 'package:shop/src/views/drawer/drawer_navigation/how_its_work/how_its_work.dart'
     as _i10;
 import 'package:shop/src/views/drawer/drawer_navigation/payment_method/payment_methods.dart'
@@ -27,10 +29,10 @@ import 'package:shop/src/views/drawer/drawer_navigation/track_order/track_order.
     as _i13;
 import 'package:shop/src/views/home/home.dart' as _i7;
 import 'package:shop/src/views/navigation/navigaiton.dart' as _i6;
-import 'package:shop/src/views/web_to_cart/web_to_cart.dart' as _i17;
+import 'package:shop/src/views/web_to_cart/web_to_cart.dart' as _i18;
 import 'package:shop/src/views/web_view/web_view.dart' as _i8;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i19;
+import 'package:stacked_services/stacked_services.dart' as _i20;
 
 class Routes {
   static const splash = '/';
@@ -63,6 +65,8 @@ class Routes {
 
   static const placedOrder = '/placed-order';
 
+  static const editMyAccountView = '/edit-my-account-view';
+
   static const webToCartView = '/web-to-cart-view';
 
   static const all = <String>{
@@ -81,6 +85,7 @@ class Routes {
     paymentMethodView,
     checkOutView,
     placedOrder,
+    editMyAccountView,
     webToCartView,
   };
 }
@@ -148,53 +153,57 @@ class StackedRouter extends _i1.RouterBase {
       page: _i16.PlacedOrder,
     ),
     _i1.RouteDef(
+      Routes.editMyAccountView,
+      page: _i17.EditMyAccountView,
+    ),
+    _i1.RouteDef(
       Routes.webToCartView,
-      page: _i17.WebToCartView,
+      page: _i18.WebToCartView,
     ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.Splash: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
+      return _i19.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.Splash(),
         settings: data,
       );
     },
     _i3.Welcome: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
+      return _i19.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.Welcome(),
         settings: data,
       );
     },
     _i4.LogIn: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
+      return _i19.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.LogIn(),
         settings: data,
       );
     },
     _i5.SignUp: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
+      return _i19.MaterialPageRoute<dynamic>(
         builder: (context) => const _i5.SignUp(),
         settings: data,
       );
     },
     _i6.NavigationView: (data) {
       final args = data.getArgs<NavigationViewArguments>(nullOk: false);
-      return _i18.MaterialPageRoute<dynamic>(
+      return _i19.MaterialPageRoute<dynamic>(
         builder: (context) =>
             _i6.NavigationView(key: args.key, index: args.index),
         settings: data,
       );
     },
     _i7.Home: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
+      return _i19.MaterialPageRoute<dynamic>(
         builder: (context) => const _i7.Home(),
         settings: data,
       );
     },
     _i8.WebViewr: (data) {
       final args = data.getArgs<WebViewrArguments>(nullOk: false);
-      return _i18.MaterialPageRoute<dynamic>(
+      return _i19.MaterialPageRoute<dynamic>(
         builder: (context) => _i8.WebViewr(
             key: args.key,
             url: args.url,
@@ -204,60 +213,69 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i9.RateUsView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
+      return _i19.MaterialPageRoute<dynamic>(
         builder: (context) => const _i9.RateUsView(),
         settings: data,
       );
     },
     _i10.HowItsWorkView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
+      return _i19.MaterialPageRoute<dynamic>(
         builder: (context) => const _i10.HowItsWorkView(),
         settings: data,
       );
     },
     _i11.CustomerServiceView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
+      return _i19.MaterialPageRoute<dynamic>(
         builder: (context) => const _i11.CustomerServiceView(),
         settings: data,
       );
     },
     _i12.ShippingCalculatorView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
+      return _i19.MaterialPageRoute<dynamic>(
         builder: (context) => const _i12.ShippingCalculatorView(),
         settings: data,
       );
     },
     _i13.TrackOrderView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
+      return _i19.MaterialPageRoute<dynamic>(
         builder: (context) => const _i13.TrackOrderView(),
         settings: data,
       );
     },
     _i14.PaymentMethodView: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
+      return _i19.MaterialPageRoute<dynamic>(
         builder: (context) => const _i14.PaymentMethodView(),
         settings: data,
       );
     },
     _i15.CheckOutView: (data) {
       final args = data.getArgs<CheckOutViewArguments>(nullOk: false);
-      return _i18.MaterialPageRoute<dynamic>(
+      return _i19.MaterialPageRoute<dynamic>(
         builder: (context) => _i15.CheckOutView(
             key: args.key, totalAmount: args.totalAmount, flag: args.flag),
         settings: data,
       );
     },
     _i16.PlacedOrder: (data) {
-      return _i18.MaterialPageRoute<dynamic>(
+      return _i19.MaterialPageRoute<dynamic>(
         builder: (context) => const _i16.PlacedOrder(),
         settings: data,
       );
     },
-    _i17.WebToCartView: (data) {
+    _i17.EditMyAccountView: (data) {
+      return _i19.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i17.EditMyAccountView(),
+        settings: data,
+      );
+    },
+    _i18.WebToCartView: (data) {
       final args = data.getArgs<WebToCartViewArguments>(nullOk: false);
-      return _i18.MaterialPageRoute<dynamic>(
-        builder: (context) =>
-            _i17.WebToCartView(key: args.key, productUrl: args.productUrl),
+      return _i19.MaterialPageRoute<dynamic>(
+        builder: (context) => _i18.WebToCartView(
+            key: args.key,
+            productUrl: args.productUrl,
+            remover: args.remover,
+            index: args.index),
         settings: data,
       );
     },
@@ -276,7 +294,7 @@ class NavigationViewArguments {
     required this.index,
   });
 
-  final _i18.Key? key;
+  final _i19.Key? key;
 
   final int index;
 
@@ -305,7 +323,7 @@ class WebViewrArguments {
     required this.index,
   });
 
-  final _i18.Key? key;
+  final _i19.Key? key;
 
   final String url;
 
@@ -340,7 +358,7 @@ class CheckOutViewArguments {
     required this.flag,
   });
 
-  final _i18.Key? key;
+  final _i19.Key? key;
 
   final double totalAmount;
 
@@ -369,30 +387,42 @@ class WebToCartViewArguments {
   const WebToCartViewArguments({
     this.key,
     required this.productUrl,
+    required this.remover,
+    required this.index,
   });
 
-  final _i18.Key? key;
+  final _i19.Key? key;
 
   final String productUrl;
 
+  final String remover;
+
+  final int index;
+
   @override
   String toString() {
-    return '{"key": "$key", "productUrl": "$productUrl"}';
+    return '{"key": "$key", "productUrl": "$productUrl", "remover": "$remover", "index": "$index"}';
   }
 
   @override
   bool operator ==(covariant WebToCartViewArguments other) {
     if (identical(this, other)) return true;
-    return other.key == key && other.productUrl == productUrl;
+    return other.key == key &&
+        other.productUrl == productUrl &&
+        other.remover == remover &&
+        other.index == index;
   }
 
   @override
   int get hashCode {
-    return key.hashCode ^ productUrl.hashCode;
+    return key.hashCode ^
+        productUrl.hashCode ^
+        remover.hashCode ^
+        index.hashCode;
   }
 }
 
-extension NavigatorStateExtension on _i19.NavigationService {
+extension NavigatorStateExtension on _i20.NavigationService {
   Future<dynamic> navigateToSplash([
     int? routerId,
     bool preventDuplicates = true,
@@ -450,7 +480,7 @@ extension NavigatorStateExtension on _i19.NavigationService {
   }
 
   Future<dynamic> navigateToNavigationView({
-    _i18.Key? key,
+    _i19.Key? key,
     required int index,
     int? routerId,
     bool preventDuplicates = true,
@@ -481,7 +511,7 @@ extension NavigatorStateExtension on _i19.NavigationService {
   }
 
   Future<dynamic> navigateToWebViewr({
-    _i18.Key? key,
+    _i19.Key? key,
     required String url,
     required String removers,
     required int index,
@@ -585,7 +615,7 @@ extension NavigatorStateExtension on _i19.NavigationService {
   }
 
   Future<dynamic> navigateToCheckOutView({
-    _i18.Key? key,
+    _i19.Key? key,
     required double totalAmount,
     required int flag,
     int? routerId,
@@ -617,9 +647,25 @@ extension NavigatorStateExtension on _i19.NavigationService {
         transition: transition);
   }
 
+  Future<dynamic> navigateToEditMyAccountView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.editMyAccountView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
   Future<dynamic> navigateToWebToCartView({
-    _i18.Key? key,
+    _i19.Key? key,
     required String productUrl,
+    required String remover,
+    required int index,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -627,7 +673,8 @@ extension NavigatorStateExtension on _i19.NavigationService {
         transition,
   }) async {
     return navigateTo<dynamic>(Routes.webToCartView,
-        arguments: WebToCartViewArguments(key: key, productUrl: productUrl),
+        arguments: WebToCartViewArguments(
+            key: key, productUrl: productUrl, remover: remover, index: index),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -691,7 +738,7 @@ extension NavigatorStateExtension on _i19.NavigationService {
   }
 
   Future<dynamic> replaceWithNavigationView({
-    _i18.Key? key,
+    _i19.Key? key,
     required int index,
     int? routerId,
     bool preventDuplicates = true,
@@ -722,7 +769,7 @@ extension NavigatorStateExtension on _i19.NavigationService {
   }
 
   Future<dynamic> replaceWithWebViewr({
-    _i18.Key? key,
+    _i19.Key? key,
     required String url,
     required String removers,
     required int index,
@@ -826,7 +873,7 @@ extension NavigatorStateExtension on _i19.NavigationService {
   }
 
   Future<dynamic> replaceWithCheckOutView({
-    _i18.Key? key,
+    _i19.Key? key,
     required double totalAmount,
     required int flag,
     int? routerId,
@@ -858,9 +905,25 @@ extension NavigatorStateExtension on _i19.NavigationService {
         transition: transition);
   }
 
+  Future<dynamic> replaceWithEditMyAccountView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.editMyAccountView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
   Future<dynamic> replaceWithWebToCartView({
-    _i18.Key? key,
+    _i19.Key? key,
     required String productUrl,
+    required String remover,
+    required int index,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -868,7 +931,8 @@ extension NavigatorStateExtension on _i19.NavigationService {
         transition,
   }) async {
     return replaceWith<dynamic>(Routes.webToCartView,
-        arguments: WebToCartViewArguments(key: key, productUrl: productUrl),
+        arguments: WebToCartViewArguments(
+            key: key, productUrl: productUrl, remover: remover, index: index),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

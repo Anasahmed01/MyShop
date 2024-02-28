@@ -70,13 +70,13 @@ class WaitingReusable {
     Color? color,
   }) {
     return Shimmer.fromColors(
-      baseColor: AppColors.blackColor,
+      baseColor: AppColors.greyColor.withOpacity(0.3),
       highlightColor: AppColors.whiteColor,
       child: Container(
         height: 60,
         width: width ?? 50,
         decoration: BoxDecoration(
-          color: color ?? Colors.black.withOpacity(0.04),
+          color: color ?? AppColors.whiteColor,
           border: Border.all(color: Colors.black.withOpacity(0.2), width: 0),
           borderRadius: const BorderRadius.all(Radius.circular(5)),
           boxShadow: const [

@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
           tabBarTheme:
               const TabBarTheme(indicatorSize: TabBarIndicatorSize.tab),
           appBarTheme: AppBarTheme(
+              color: Colors.white,
               iconTheme: IconThemeData(color: AppColors.whiteColor))),
       debugShowCheckedModeBanner: false,
       navigatorKey: StackedService.navigatorKey,

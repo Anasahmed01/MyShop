@@ -96,9 +96,7 @@ class NavigationView extends StatelessWidget {
                       : viewModel.currentUser!.shopGo[0].nickname,
                   context: context,
                   myAccount: () {
-                    // index = 4;
-                    // viewModel.notifyListeners();
-                    // viewModel.navigateToEditMyAccountView();
+                    viewModel.navigateToEditMyAccountView();
                   },
                   weGo: () {},
                   yuGo: () {

@@ -1,13 +1,26 @@
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:shop/src/app/app.locator.dart';
+import 'package:shop/src/app/app.router.dart';
 import 'package:shop/src/network/api_client.dart';
 import 'package:shop/src/services/brand/brand.dart';
 import 'package:shop/src/utils/app_constraints/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'dart:developer' as dev;
 
+import 'package:stacked_services/stacked_services.dart';
+
 class WebViewModel extends BaseViewModel {
   late InAppWebViewController controller;
+
+  navigateToWebToCart({
+    required int index,
+    required String remover,
+  }) {
+    locator<NavigationService>().clearStackAndShow(Routes.webToCartView,
+        arguments: WebToCartViewArguments(
+            productUrl: currentUrl, index: index, remover: remover));
+  }
+
   bool show = false;
 
   String currentUrl = '';
@@ -65,8 +78,6 @@ class WebViewModel extends BaseViewModel {
       return isLoading = false;
     }
   }
-
-  
 
   removeringElements(
       {required InAppWebViewController controller, required String removers}) {

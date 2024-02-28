@@ -1,9 +1,15 @@
+import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:shop/src/models/product_detail.dart';
 import 'package:shop/src/network/api_client.dart';
 import 'package:shop/src/utils/app_constraints/app_strings.dart';
 import 'package:stacked/stacked.dart';
 
 class WebToCartViewModel extends BaseViewModel {
+  RoundedLoadingButtonController addToCartController =
+      RoundedLoadingButtonController();
+  RoundedLoadingButtonController tryAgainController =
+      RoundedLoadingButtonController();
+
   int currentSize = 0;
   bool isLoading = false;
   bool foundEror = false;

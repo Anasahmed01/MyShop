@@ -1,5 +1,6 @@
 import 'package:shop/src/services/brand/brand.dart';
 import 'package:shop/src/services/user_services/user_service.dart';
+import 'package:shop/src/views/drawer/drawer_navigation/edit_profile/edit_profile.dart';
 import 'package:shop/src/views/web_view/web_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -47,6 +48,7 @@ import '../views/web_to_cart/web_to_cart.dart';
   MaterialRoute(page: PaymentMethodView),
   MaterialRoute(page: CheckOutView),
   MaterialRoute(page: PlacedOrder),
+  MaterialRoute(page: EditMyAccountView),
 
   //Web To Cart
   MaterialRoute(page: WebToCartView),

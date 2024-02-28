@@ -59,9 +59,9 @@ class NavViewModel extends BaseViewModel {
     }
   }
 
-  // navigateToEditMyAccountView() {
-  //   locator<NavigationService>().navigateTo(Routes.editMyAccountView);
-  // }
+  navigateToEditMyAccountView() {
+    locator<NavigationService>().navigateTo(Routes.editMyAccountView);
+  }
 
   // navigateToBrandedProductView() {
   //   locator<NavigationService>().navigateTo(Routes.yugoBannedProductsView);

@@ -20,7 +20,7 @@ Widget addToCart({
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: InkWell(
           onTap: () async {
-            // viewModel.navigateToWebToCart(index: index, removers: removers);
+            viewModel.navigateToWebToCart(index: index, remover: removers);
           },
           child: Container(
             decoration: BoxDecoration(
@@ -39,8 +39,6 @@ Widget addToCart({
                 SizedBox(width: 10),
                 Flexible(
                   child: Text('Add to cart',
-
-                  //TODO: web view argument
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 14,
