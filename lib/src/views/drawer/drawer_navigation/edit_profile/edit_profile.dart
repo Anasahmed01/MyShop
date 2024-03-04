@@ -11,7 +11,7 @@ class EditMyAccountView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder.reactive(
-      viewModelBuilder: () => EditMyAccountViewModel(),
+      viewModelBuilder: () => EditProfileViewModel(),
       onViewModelReady: (viewModel) async {
         await viewModel.getUserInfo();
       },

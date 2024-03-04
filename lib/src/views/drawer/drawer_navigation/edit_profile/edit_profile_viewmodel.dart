@@ -16,7 +16,7 @@ import '../../../../app/app.locator.dart';
 import '../../../../models/user.dart';
 import '../../../../services/user_services/user_service.dart';
 
-class EditMyAccountViewModel extends BaseViewModel {
+class EditProfileViewModel extends BaseViewModel {
   TextEditingController fullNameController = TextEditingController();
   TextEditingController countryController = TextEditingController();
   TextEditingController dobController = TextEditingController();

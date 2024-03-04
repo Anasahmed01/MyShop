@@ -1,7 +1,9 @@
+import 'package:animations/animations.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:intl/intl.dart';
+import 'package:shop/src/views/drawer/drawer_navigation/edit_profile/widget/open_profile.dart';
 import '../../../../../models/user.dart';
 import '../../../../../reusable_widgets/buttons/app_buttons.dart';
 import '../../../../../reusable_widgets/text/text.dart';
@@ -14,7 +16,7 @@ import '../edit_profile_viewmodel.dart';
 Widget activeUser({
   required BuildContext context,
   required UserModel userModel,
-  required EditMyAccountViewModel viewModel,
+  required EditProfileViewModel viewModel,
 }) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -49,86 +51,94 @@ Widget activeUser({
                     child: Padding(
                       padding: const EdgeInsets.only(top: 15.0),
                       child: Center(
-                        child: CircleAvatar(
-                          backgroundColor: AppColors.greyColor,
-                          backgroundImage:
-                              NetworkImage(userModel.shopGo[0].userImage),
-                          maxRadius: 70,
                           child: Stack(
-                            children: [
-                              Positioned(
-                                bottom: 0,
-                                right: 0,
-                                child: InkWell(
-                                  onTap: () {
-                                    showModalBottomSheet(
-                                        context: context,
-                                        builder: (context) {
-                                          return Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 10, bottom: 20),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: <Widget>[
-                                                ListTile(
-                                                  leading: Icon(
-                                                    Icons.camera_alt_rounded,
-                                                    color:
-                                                        AppColors.primaryColor,
-                                                  ),
-                                                  title: CustomText
-                                                      .customSizedText(
-                                                    text: 'Take photo',
-                                                    color:
-                                                        AppColors.primaryColor,
-                                                    size: 15,
-                                                  ),
-                                                  onTap: () {
-                                                    // viewModel
-                                                    //     .uploadImageFromCamera();
-                                                    Navigator.pop(context);
-                                                  },
-                                                ),
-                                                ListTile(
-                                                  leading: Icon(
-                                                    Icons.photo,
-                                                    color:
-                                                        AppColors.primaryColor,
-                                                  ),
-                                                  title: CustomText
-                                                      .customSizedText(
-                                                    text: 'Select from gallery',
-                                                    color:
-                                                        AppColors.primaryColor,
-                                                    size: 15,
-                                                  ),
-                                                  onTap: () {
-                                                    viewModel
-                                                        .uploadImageFromGallery();
-                                                    Navigator.pop(context);
-                                                  },
-                                                ),
-                                              ],
+                        children: [
+                          OpenContainer(
+                            closedShape: const CircleBorder(),
+                            transitionDuration: const Duration(seconds: 1),
+                            closedBuilder:
+                                (context, VoidCallback openContainer) =>
+                                    Container(
+                                        height: 150,
+                                        width: 150,
+                                        decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            image: DecorationImage(
+                                                fit: BoxFit.cover,
+                                                image: NetworkImage(userModel
+                                                    .shopGo[0].userImage))),
+                                        child: Container()),
+                            openBuilder: (context, action) =>
+                                const OpenProfileView(),
+                          ),
+                          Positioned(
+                            bottom: 0,
+                            right: 0,
+                            child: InkWell(
+                              highlightColor: AppColors.whiteColor,
+                              borderRadius: BorderRadius.circular(30),
+                              splashColor: Colors.transparent,
+                              onTap: () {
+                                showModalBottomSheet(
+                                    context: context,
+                                    builder: (context) {
+                                      return Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 10, bottom: 20),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: <Widget>[
+                                            ListTile(
+                                              leading: Icon(
+                                                Icons.camera_alt_rounded,
+                                                color: AppColors.primaryColor,
+                                              ),
+                                              title: CustomText.customSizedText(
+                                                text: 'Take photo',
+                                                color: AppColors.primaryColor,
+                                                size: 15,
+                                              ),
+                                              onTap: () {
+                                                // viewModel
+                                                //     .uploadImageFromCamera();
+                                                Navigator.pop(context);
+                                              },
                                             ),
-                                          );
-                                        });
-                                  },
-                                  child: Card(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(80),
-                                    ),
-                                    elevation: 10,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(12),
-                                      child: Image.asset(AppImage.edit),
-                                    ),
-                                  ),
+                                            ListTile(
+                                              leading: Icon(
+                                                Icons.photo,
+                                                color: AppColors.primaryColor,
+                                              ),
+                                              title: CustomText.customSizedText(
+                                                text: 'Select from gallery',
+                                                color: AppColors.primaryColor,
+                                                size: 15,
+                                              ),
+                                              onTap: () {
+                                                viewModel
+                                                    .uploadImageFromGallery();
+                                                Navigator.pop(context);
+                                              },
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    });
+                              },
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(80),
+                                ),
+                                elevation: 10,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(12),
+                                  child: Image.asset(AppImage.edit),
                                 ),
                               ),
-                            ],
+                            ),
                           ),
-                        ),
-                      ),
+                        ],
+                      )),
                     ),
                   ),
                   Padding(
