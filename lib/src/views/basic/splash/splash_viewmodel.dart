@@ -13,27 +13,33 @@ class SplashViewModel extends BaseViewModel {
   final users = locator<UserService>();
 
   navigate() async {
+    // if (userId != null) {
+    //   users.isLogin = true;
+    //   await users.getUserData();
+    //   await users.getAddress();
+    // }
+    // UserData.getUserData(userId!);
+
     if (userId != null) {
+      users.isLogin = true;
       await users.getUserData();
       await users.getAddress();
-    }
-    // UserData.getUserData(userId!);
-    Timer(const Duration(seconds: 2), () {
-      if (userId != null) {
-        locator<NavigationService>().replaceWithTransition(
-          NavigationView(index: 0), //add index
-          opaque: true,
-          duration: const Duration(milliseconds: 1000),
-          curve: Curves.bounceOut,
-        );
-      } else {
+      locator<NavigationService>().replaceWithTransition(
+        NavigationView(index: 0), //add index
+        opaque: true,
+        duration: const Duration(milliseconds: 1000),
+        curve: Curves.bounceOut,
+      );
+    } else {
+      Timer(const Duration(seconds: 3), () {
         locator<NavigationService>().replaceWithTransition(const Welcome(),
             opaque: true,
             duration: const Duration(milliseconds: 300),
             transitionStyle: Transition.leftToRightWithFade);
-        // locator<NavigationService>()
-        //     .pushNamedAndRemoveUntil(Routes.welcomeView);
-      }
-    });
+      });
+
+      // locator<NavigationService>()
+      //     .pushNamedAndRemoveUntil(Routes.welcomeView);
+    }
   }
 }

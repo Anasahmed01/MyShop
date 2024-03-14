@@ -22,7 +22,7 @@ class WebViewModel extends BaseViewModel {
   }
 
   bool show = false;
-
+  String url = '';
   String currentUrl = '';
   final brandService = locator<BrandsService>();
 
@@ -40,7 +40,7 @@ class WebViewModel extends BaseViewModel {
   }
 
   bool apiLoader = false;
-  checkUrl({required String link}) async {
+  checkUrl({required link}) async {
     isScroling = true;
     currentUrl = link;
     show = false;

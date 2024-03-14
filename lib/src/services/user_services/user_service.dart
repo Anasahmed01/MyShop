@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'package:shop/src/services/storage/storage.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -9,6 +11,7 @@ import '../../network/api_client.dart';
 import '../../utils/app_constraints/app_strings.dart';
 
 class UserService {
+  bool isLogin = false;
   String? userId = LocalStorageServices.getUserId();
   UserModel? userData;
 
@@ -71,7 +74,10 @@ class UserService {
     }
   }
 
-  static Future<void> logout() async {
+  static logout() async {
+    bool isLogin = false;
+    LocalStorageServices.deleteUser();
+
     LocalStorageServices.deleteUser();
     locator<NavigationService>().pushNamedAndRemoveUntil(Routes.logIn);
   }

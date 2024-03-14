@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:shop/src/views/web_to_cart/widget/error.dart';
 import 'package:shop/src/views/web_to_cart/widget/waiting_product.dart';
 import 'package:stacked/stacked.dart';
-
 import 'package:shop/src/views/web_to_cart/web_to_cart_viewmodel.dart';
 import 'package:shop/src/views/web_to_cart/widget/product_info.dart';
 
@@ -24,8 +23,8 @@ class WebToCartView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder.reactive(
       viewModelBuilder: () => WebToCartViewModel(),
-      onViewModelReady: (viewModel) {
-        viewModel.getProductData(productUrl: productUrl.toString());
+      onViewModelReady: (viewModel) async {
+        await viewModel.getProductData(productUrl: productUrl.toString());
       },
       builder: (context, viewModel, child) {
         if (viewModel.isLoading == true) {

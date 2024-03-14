@@ -64,20 +64,15 @@ Widget productData({
                           height: 40,
                           width: MediaQuery.sizeOf(context).width,
                           onPressed: () {
-                            // String productSize = '';
-                            // if (productDetail.response.sizesArray.isNotEmpty) {
-                            //   productSize = productDetail
-                            //       .response.sizesArray[viewModel.currentSize];
-                            // }
-                            // viewModel.navigateToNext(
-                            //   navIndex: index,
-                            //   url: productDetail.response.url,
-                            //   imageUrl:
-                            //       productDetail.response.productImagesArray,
-                            //   productName: productDetail.response.heading,
-                            //   size: productSize,
-                            //   removers: removers,
-                            // );
+                            String productSize = '';
+                            if (productDetail.response.sizesArray.isNotEmpty) {
+                              productSize = productDetail
+                                  .response.sizesArray[viewModel.currentSize];
+                            }
+                            viewModel.addToCart(
+                                url: productDetail.response.url,
+                                size: productSize,
+                                module: '${viewModel.isSelected.toString()}');
                           }),
                     ),
                     const SizedBox(height: 30),

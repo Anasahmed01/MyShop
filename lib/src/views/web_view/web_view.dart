@@ -27,6 +27,9 @@ class WebViewr extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder.reactive(
       viewModelBuilder: () => WebViewModel(),
+      onViewModelReady: (viewModel) {
+        viewModel.url = url;
+      },
       builder: (context, viewModel, child) {
         return Scaffold(
           appBar: AppBar(
@@ -61,7 +64,7 @@ class WebViewr extends StatelessWidget {
             children: [
               InAppWebView(
                 initialUrlRequest: URLRequest(
-                  url: Uri.parse(url),
+                  url: Uri.parse(viewModel.url),
                 ),
                 onProgressChanged:
                     (InAppWebViewController controller, int progress) =>
